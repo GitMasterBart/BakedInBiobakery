@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+<html>
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'polls/objects.css' %}">
+        <script src="{% static 'polls/objects.js' %}"    defer></script>
+
+        <title></title></head>
+{% block content %}
+
+    <div class="container" name="run_script">
+    <form method="post">
+        {% csrf_token %}
+        <label>
+            <input type="number" max="16" name="threads">
+        </label>
+        <button type="submit" name="run_script">Run script</button>
+    </form>
+    </div>
+
+
+{% endblock %}
+
+</html>

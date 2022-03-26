@@ -1,0 +1,50 @@
+{% load static %}
+<html>
+<head>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/objects.css' %}">
+    <script src="{% static 'polls/objects.js' %}"    defer></script>
+{#    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>#}
+    <title></title>
+</head>
+<body>
+<header class="primary-header flex">
+
+    <div class="picture-container"><button style="background: white; border: 0">
+        <img src="{% static 'img/Wetsus-1.png' %}" alt="logo" ></button>
+        {#        https://wateralliance.nl/wp-content/uploads/2018/09/Wetsus-1.png#}
+    </div>
+
+
+    <button class="mobile-nav-toggle"
+            aria-controls="primary-navigation" aria-expanded="false">
+        <span class="sr-only"> Menu </span>
+    </button>
+    <nav>
+        <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
+
+            <li>
+                <a href="HUMAnN">
+                    <span aria-hidden="true">01</span>HUMAnN
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span aria-hidden="true">02</span>Information
+                </a>
+            </li>
+            {#        <li>#}
+            {#            <a href="#">#}
+            {#                <span aria-hidden="true">03</span>#}
+            {#            </a>#}
+            {#        </li>#}
+        </ul>
+    </nav>
+
+</header>
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
