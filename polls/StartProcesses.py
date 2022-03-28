@@ -5,9 +5,9 @@ import os
 class activateHumaNn:
 
     def __init__(self, filename, input_file, threads):
-        self.input_file = "~/Desktop/StageWetsus2022/BakedInBiobakery/BakedInBiobakery/" + input_file
+        self.input_file = "~/Desktop/StageWetsus2022/BakedInBiobakery/" + input_file
         self.output_file = "./Demodatafiles"
-        self.bashscript = "~/Desktop/StageWetsus2022/BakedInBiobakery/BakedInBiobakery/media/" + filename
+        self.bashscript = "~/Desktop/StageWetsus2022/BakedInBiobakery/media/" + filename
         self.threads = threads
 
 
