@@ -18,6 +18,13 @@ In this project, I am using existing software to build a user-friendly pipeline 
 
 **Not User Ready.**
 
+<!-- For installing the virtualenv that includes all the nessasry packages: use 
+ ```
+ $ virtualenv Bio-bakeryHumanNtoolenv
+$ source <env_name>/bin/activate
+(<env_name>)$ pip install -r Bio-bakeryHumanNtoolenv.txt
+ ```-->
+
 [^1]: Karengera, A., Sterken, M. G., Kammenga, J. E., Riksen, J. A. G., Dinkla, I. J. T., & Murk, A. J. (2022). Differential expression of genes in c. elegans reveals transcriptional responses to indirect-acting xenobiotic compounds and insensitivity to 2,3,7,8-tetrachlorodibenzodioxin. Ecotoxicology and Environmental Safety, 233. https://doi.org/10.1016/j.ecoenv.2022.113344
 
 [^2]: Pevsner, J. (2015). Bioinformatics and Functional Genomics. Third Edition. In Briefings in Functional Genomics and Proteomics.
