@@ -1,10 +1,12 @@
 #!/bin/bash
 
-cd ~/Desktop/StageWetsus2022/TranscriptoomAnalysis
+# shellcheck disable=SC1090
+source ~/Desktop/StageWetsus2022/BakedInBiobakery/Bio-bakeryHumaNtoolenv/bin/activate Bio-bakeryHumaNtoolenv
+
+# shellcheck disable=SC2164
+#cd ~/Desktop/StageWetsus2022/TranscriptoomAnalysis
 
 #./HumanBashScriptSSH
-
-source /usr/local/Caskroom/miniconda/base/bin/activate HumanNEnv
 
 mkdir temp -p
 
