@@ -8,8 +8,6 @@ from polls.views import *
 
 urlpatterns = [
     # path('', Myviews.geeks_view, name='base'),
-    path('HUMAnN', Myviews.as_view(), name='uplaoding'),
-    path('create/', create_session),
-    path('access', access_session)
+    path('HUMAnN', Myviews.as_view(), name='uplaoding')
     # path('HUMAnN/start', views.run_scripts)
 ]
