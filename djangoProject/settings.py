@@ -128,8 +128,8 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/tmp/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/tmp')
 
 # this is the static files context path when request the static file in url. for example http://127.0.0.1:8000/static/js/jquery-3.3.1.min.js
 # STATIC_URL = '/static/'
