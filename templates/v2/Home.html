@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Home</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="{% static 'static/Wetsus-1.png' %}" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+     <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.min.css' %}">
+
+</head>
+<body>
+
+<div class = bg-image
+        style="
+          background-image: url({% static 'static/IMG_1058.png' %});
+          height: 100vh;background-repeat: no-repeat; background-size: cover; background-position: center center; opacity: 40%; background-color: black;
+        ">
+</div>
+<header>
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light scrolling-navbar">
+    <a class="navbar-brand" href="Home"><img src="{% static 'static/Wetsus-1.png' %}" style="width: 8rem;"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<!--        <ul class="navbar-nav mr-auto">-->
+<!--            <li class="nav-item active">-->
+<!--                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="#">Link</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="#">Profile</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+    </div>
+</nav>
+
+
+        <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+
+
+
+                    <div class="d-flex justify-content-center " data-wow-delay="0.3s">
+
+                    <form class="text-center border border-light p-5" enctype="multipart/form-data" method=post>
+                    {% csrf_token %}
+
+                        <p class="h4 mb-5">Sign in</p>
+
+
+
+                        <select class="browser-default custom-select m-xl-5" name = "initials_user">
+
+                            {% for intial in intials %}
+                                <option value={{ intial }}>{{ intial }}</option>
+                                {{ intial }}
+                            {% endfor %}
+                        </select>
+
+                        <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+
+                        <p>
+                            <a href="">Your initials are not there?</a>
+                        </p>
+
+
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+</header>
+
+
+
+<script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+<!-- Custom scripts -->
+<script type="text/javascript"></script>
+</body>
+</html>
