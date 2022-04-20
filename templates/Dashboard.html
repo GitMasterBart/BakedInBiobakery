@@ -1,0 +1,41 @@
+{% extends 'HumanNpage.html' %}
+{% load static %}
+<html>
+<head>
+{#        <link rel="stylesheet" type="text/css" href="{% static 'polls/objects.css' %}">#}
+{#        <script src="{% static 'polls/objects.js' %}"    defer></script>#}
+
+
+        <title></title></head>
+{% block content2 %}
+
+     <div class="container2">
+         <select id="select_fastqc_png">
+         <option>...choice</option>
+             {% for img in img_files %}
+              <option value= {{ img }}>{{img}}</option>
+            {% endfor %}
+            </select>
+        <img src={{ img.1 }} id="fasqcimg">
+    </div>
+
+
+        <br><br>
+
+<script>
+    let selectorfasqc = document.getElementById('select_fastqc_png')
+    let imgfasqc = document.getElementById("fasqcimg")
+    console.log(selectorfasqc)
+    selectorfasqc.addEventListener("change",function(){
+        console.log(this.value)
+        imgfasqc.src = this.value ;
+
+    {#document.body.append(para);#}
+  });
+
+
+
+</script>
+
+{% endblock %}
+</html>

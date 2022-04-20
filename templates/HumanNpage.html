@@ -20,6 +20,10 @@
     {% if uploaded_file_url %}
     <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
   {% endif %}
+     {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+
     </div>
 
         <div class= container_controlpannel>
@@ -53,6 +57,15 @@
 
         <br><br>
 
+    <form action="" method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="Submit" name="submit" value="Submit"/>
+</form>
+
+
+
+
 <script>
     let selectorfasqc = document.getElementById('select_fastqc_png')
     let imgfasqc = document.getElementById("fasqcimg")
@@ -63,6 +76,7 @@
 
     {#document.body.append(para);#}
   });
+
 
 
 
