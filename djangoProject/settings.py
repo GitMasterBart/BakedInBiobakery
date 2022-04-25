@@ -151,13 +151,13 @@ STATICFILES_DIRS = [
 
 SCRIPT_ROOT = os.path.join(BASE_DIR, 'static/scripts')
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'http://127.0.0.1:8000/',
-        'TIMEOUT': 604800  # 7 days
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#         'LOCATION': 'http://127.0.0.1:8000/',
+#         'TIMEOUT': 604800  # 7 days
+#     }
+# }
 
 CACHE_MIDDLEWARE_ALIAS = 'default'  # which cache alias to use
 
