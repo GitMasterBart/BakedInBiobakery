@@ -2,5 +2,8 @@ from django.apps import AppConfig
 
 
 class BiobakeryConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
+    # default_auto_field = 'django.db.models.BigAutoField'
     name = 'biobakery'
+    # label = 'biobakery'
+    # verbose_name = "biobakery2"
+
