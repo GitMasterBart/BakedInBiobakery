@@ -1,6 +1,6 @@
 # BakedInBiobakery
 
-![Flowchart application](media/Flowchart/flowchart.jpeg)
+![Flowchart application](static/img/flowchart/flowchart.png)
 *Figure1: Shows the functionality of the application. The different colored arrows show which processes belong together.*
 
 ## Introduction
