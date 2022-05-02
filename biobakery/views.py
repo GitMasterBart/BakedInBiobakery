@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Users
-from .appModels.start_processes import StartProcesses
+from .appModels.start_processes import ProcessesStarter
 from .appModels.tool_switch import Switcher
 
 
@@ -32,13 +32,12 @@ class Uploadfiles(View):
     def post(self, request):
         form = ApplicatonForm(request.POST)
         newpage = ""
-
         if request.method == 'POST' and request.FILES.get('input_file'):
             uploaded = Uploader(request.FILES.get('input_file'))
             if uploaded.check_file():
                 uploaded.handle_uploaded_file()
                 newpage = render(request, 'v2/succes_page.html')
-                switch = Switcher(request.POST.get("BiobakeryTool"), str(request.FILES.get('input_file')), "~/Desktop/output_data")
+                switch = Switcher(request.POST.get("BiobakeryTool"),str(request.FILES.get('input_file')), "~/Desktop/output_data")
                 switch.control_unzip_switch()
                 switch.tool_switch()
             else:
