@@ -10,5 +10,6 @@ urlpatterns = [
     # path('', Myviews.geeks_view, name='base'),
     path('Home', HomeViews.as_view()),
     path('Upload', Uploadfiles.as_view() ),
-    path('succes', SuccesVieuws.as_view())
+    path('succes', SuccesVieuws.as_view()),
+    path('addUser', AddUser.as_view())
 ]
