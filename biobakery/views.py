@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from .models import Users
-from .appModels.start_processes import ProcessesStarter
+# from .appModels.start_processes import ProcessesStarter
 from .appModels.tool_switch import Switcher
 
 
 # Create your views here.
 from django.views import View
-
-from biobakery.forms import ApplicatonForm
+from biobakery.appModels.write_to_database import WriteToDb
+from biobakery.forms import ApplicatonForm, NewUserForm
 from .appModels.uploader import Uploader
 
 
@@ -52,3 +52,24 @@ class Uploadfiles(View):
 class SuccesVieuws(View):
     def get(self, request):
         return render(request, "v2/succes_page.html")
+
+
+class AddUser(View):
+    def get(self, request):
+        add_user_form = NewUserForm()
+        return render(request, "v2/new_user.html", {'form': add_user_form})
+
+    def post(selfs, request):
+        add_user_form = NewUserForm()
+        if request.method == 'POST':
+            initials = request.POST.get("initials")
+            createdb = WriteToDb("/Users/bengels/Desktop/output_data/output_gentable.tsv", initials,
+                                         "Microbiologie",
+                                         "2022-05-03", "FirstTestOnderzoek")
+            createdb.add_users_to_db()
+        return redirect("/biobakery/Home")
+
+
+
+
+
