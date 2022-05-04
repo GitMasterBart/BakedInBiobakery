@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+{#    <meta http-equiv="refresh" content="10">#}
+    <title>Home</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="{% static 'img/Wetsus-1.png' %}" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+     <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.min.css' %}">
+
+</head>
+<body>
+{% block background %}
+{% endblock %}
+<header>
+<nav class="navbar fixed-top navbar-expand-lg navbar-light scrolling-navbar">
+    <a class="navbar-brand" href="Home"><img src="{% static 'img/Wetsus-1.png' %}" style="width: 8rem;"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        {% block navitems %} }
+        {% endblock %}
+    </ul>
+    </div>
+</nav>
+</header>
+<article>
+{% block pagecontent %}
+
+{% endblock %}
+
+</article>
+
+<script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+<!-- Custom scripts -->
+<script type="text/javascript"></script>
+
+{% block script %}
+{% endblock %}
+</body>
+</html>
+

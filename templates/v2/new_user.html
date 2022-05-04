@@ -1,63 +1,20 @@
+{% extends "v2/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Uploadform</title>
-    <!-- MDB icon -->
-    <link rel="icon" href="{% static 'img/Wetsus-1.png' %}" type="image/x-icon" />
-    <!-- Font Awesome -->
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <!-- Google Fonts Roboto -->
-    <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
-    />
-    <!-- MDB -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/Invisible' %}">
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-
+{% block background %}
 <div class = bg-image
      style="
           background-image: url({% static 'img/IMG_1058.png' %});
           height: 100vh;background-repeat: no-repeat; background-size: cover; background-position: center center; opacity: 40%; background-color: black;
         ">
 </div>
-<header>
+{% endblock %}
+{% block navitems %}
+                        <li class="nav-item active">
+                            <strong><a class="nav-link" href="#">Information <span class="sr-only">(current)</span></a></strong>
+                        </li>
+{% endblock %}
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light scrolling-navbar">
-        <a class="navbar-brand" href="Home"><img src="{% static 'img/Wetsus-1.png' %}" style="width: 8rem;"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-{#                    <ul class="navbar-nav mr-auto">#}
-{#                        <li class="nav-item active">#}
-{#                            <strong><a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a></strong>#}
-{#                        </li>#}
-            <!--            <li class="nav-item">-->
-            <!--                <a class="nav-link" href="#">Link</a>-->
-            <!--            </li>-->
-            <!--            <li class="nav-item">-->
-            <!--                <a class="nav-link" href="#">Profile</a>-->
-            <!--            </li>-->
-{#                    </ul>#}
-        </div>
-
-    </nav>
-
-</header>
-
-<article>
+{% block pagecontent %}
     <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
 
 
@@ -79,7 +36,9 @@
         </div>
 
     </div>
-</article>
+{% endblock %}
+
+{% block script %}
 <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script><!-- Custom scripts -->
 <script type="text/javascript"></script>
 
@@ -97,10 +56,4 @@
 
 
 </script>
-
-
-
-</body>
-
-
-</html>
+{% endblock %}
