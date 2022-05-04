@@ -12,7 +12,7 @@ from django.conf import settings
 from django.db.utils import DataError
 import django
 import pandas as pd
-from biobakery.models import Users, Department, Researches, DumpTable
+
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "djangoProject.settings"
 django.setup()
@@ -27,6 +27,7 @@ if not settings.configured:
         # DATABASE_PORT = '3306',
     )
 
+from biobakery.models import *
 
 class WriteToDb:
     """
@@ -91,7 +92,9 @@ class WriteToDb:
         Adds all te result with the samples to a database if they doe not already exists.
         :return: if DataError: str("Datapoints already exists.")
         """
-
+        if DumpTable.objects.filter(researches_id_id=self.research_id,
+                                    user_id_id=self.user_id).exists():
+            return exit(DataError)
         try:
             transformed_table = pd.DataFrame(pd.melt(pd.read_table(self.file, lineterminator='\n'),
                                                      id_vars="# Gene Family"))
@@ -103,11 +106,7 @@ class WriteToDb:
                     family = '\t'
                 sample = str(transformed_table.values[i][1])
                 result = transformed_table.values[i][2]
-
-                if not DumpTable.objects.filter(gene=gene, family=family, sample=sample,
-                                                result=result, researches_id_id=self.research_id,
-                                                user_id_id=self.user_id).exists():
-                    DumpTable.objects.create(gene=gene, family=family, sample=sample, result=result,
+                DumpTable.objects.create(gene=gene, family=family, sample=sample, result=result,
                                              researches_id_id=self.research_id,
                                              user_id_id=self.user_id)
         except DataError:
