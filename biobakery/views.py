@@ -5,6 +5,7 @@ from .appModels.tool_switch import Switcher
 
 
 # Create your views here.
+import os
 from django.views import View
 from biobakery.appModels.write_to_database import WriteToDb
 from biobakery.forms import ApplicatonForm, NewUserForm
@@ -14,7 +15,9 @@ from .appModels.uploader import Uploader
 class HomeViews(View):
 
     def get(self, request):
+        os.system("python manage.py runserver")
         intitals = Users.objects.all()
+        print(intitals)
         return render(request, "v2/Home.html", {'intials' : intitals})
 
     def post(self, request):
@@ -67,6 +70,7 @@ class AddUser(View):
                                          "Microbiologie",
                                          "2022-05-03", "FirstTestOnderzoek")
             createdb.add_users_to_db()
+            os.system("python manage.py runserver")
         return redirect("/biobakery/Home")
 
 
