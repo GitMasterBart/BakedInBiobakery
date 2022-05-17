@@ -5,7 +5,7 @@ This class pushes the result data in a database, it uses django
 models to make contact with the mysql database. It is a class that needs five variables:
  file, initials, department, date, research_name
 """
-
+import sys
 import time
 import os
 from django.conf import settings
@@ -92,20 +92,29 @@ class WriteToDb:
         Adds all te result with the samples to a database if they doe not already exists.
         :return: if DataError: str("Datapoints already exists.")
         """
+
         if DumpTable.objects.filter(researches_id_id=self.research_id,
                                     user_id_id=self.user_id).exists():
             return exit(DataError)
         try:
             transformed_table = pd.DataFrame(pd.melt(pd.read_table(self.file, lineterminator='\n'),
                                                      id_vars="# Gene Family"))
-            for i in range(transformed_table.size):
-                gene = transformed_table.values[i][0].split(" ")[0][0:19]
-                if len(transformed_table.values[i][0].split(' ')) == 2:
-                    family = transformed_table.values[i][0].split(' ')[1]
+            family = ""
+            for i in range(len(transformed_table)):
+                if ":" or "|" in str(transformed_table.values[i][0]):
+                    gene = transformed_table.values[i][0].split(":")[0]
+                    if len(transformed_table.values[i][0].split(":")) == 2:
+                        family = transformed_table.values[i][0].split(":")[1]
+                    elif "|" in transformed_table.values[i][0].split(":")[0]:
+                        gene = str(transformed_table.values[i][0].split(":")[0]).split("|")[0]
+                        family = str(transformed_table.values[i][0].split(":")[0]).split("|")[1]
                 else:
-                    family = '\t'
+                    gene = transformed_table.values[i][0]
+                    family = ""
+                print([gene,family])
                 sample = str(transformed_table.values[i][1])
                 result = transformed_table.values[i][2]
+
                 DumpTable.objects.create(gene=gene, family=family, sample=sample, result=result,
                                              researches_id_id=self.research_id,
                                              user_id_id=self.user_id)
@@ -115,7 +124,7 @@ class WriteToDb:
 
 def main():
     start = time.process_time()
-    createdb = WriteToDb("/Users/bengels/Desktop/output_data/output_gentable.tsv",
+    createdb = WriteToDb("~/Desktop/Uploaded_files/demofiles_wetsusR1R2/humantool_output_map_name/interleaved_map_name_genefamilies.tsv",
                          "beng", "Microbiologie",
                          "2022-05-03", "FirstTestOnderzoek")
     createdb.add_users_to_db()
