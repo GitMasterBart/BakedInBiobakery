@@ -123,10 +123,12 @@ class WriteToDb:
 
 
 def main():
+    # file = sys.argv[1]
     start = time.process_time()
-    createdb = WriteToDb("~/Desktop/Uploaded_files/demofiles_wetsusR1R2/humantool_output_map_name/interleaved_map_name_genefamilies.tsv",
-                         "beng", "Microbiologie",
-                         "2022-05-03", "FirstTestOnderzoek")
+    createdb = WriteToDb("/Users/bengels/Desktop/Uploaded_files/demofiles_wetsusR1R2_v1/humantool_output_map_name/interleaved_map_name_genefamilies.tsv", "beng", "Microbiologie", "2022-05-03", "FirstTestOnderzoek")
+        # "~/Desktop/Uploaded_files/demofiles_wetsusR1R2/humantool_output_map_name/interleaved_map_name_genefamilies.tsv",
+        #                  "beng", "Microbiologie",
+        #                  "2022-05-03", "FirstTestOnderzoek")
     createdb.add_users_to_db()
     createdb.add_research_to_db()
     createdb.add_results_to_db()
