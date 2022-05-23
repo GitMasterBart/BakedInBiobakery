@@ -8,10 +8,12 @@ input_file_Location = "/Users/bengels/Desktop/Uploaded_files/"
 # input_file_Location_sh ="~/Desktop/StageWetsus2022/BakedInBiobakery/media/"
 
 # HtmlScripts and filePaths used in views.py
-BashScriptHuman = "/Users/bengels/Desktop/StageWetsus2022/BakedInBiobakery/media/HumanBashScript.sh"
-BashScriptHumanMulti = "/Users/bengels/Desktop/StageWetsus2022/BakedInBiobakery/media/HumanBashScriptMulti.sh"
+BashScriptHuman = "/Users/bengels/Desktop/StageWetsus2022/BakedInBiobakery/static/sh_scripts/HumanBashStarter.sh"
 UniprotDatabase = "~/Desktop/Uploaded_files/humann_dbs/uniref"
 
 
-imgFasqc_folder = "/Users/bengels/Desktop/StageWetsus2022/BakedInBiobakery/static/fastqcfiles/images/"
+imgFasqc_folder = "/Users/bengels/Desktop/StageWetsus2022/BakedInBiobakery/static/fastqcfiles/images_after/"
 
+# uploaded filepath
+
+uploaded_filepath = "/Users/bengels/Desktop/Uploaded_files/"

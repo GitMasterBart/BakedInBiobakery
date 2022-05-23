@@ -43,21 +43,29 @@ class ProcessesStarter:
 
         string_ready_for_use = ""
         count = 0
-        print(Pathways.uploaded_filepath)
         new_list_filse = FileScraper(Pathways.uploaded_filepath + str(self.input_files))
         new_list_filse.find_files_in_directories()
 
         dataset = new_list_filse.get_directory_list_onlynames()
+        if dataset[0] == ".snakemake":
+            dataset.remove(".snakemake")
 
         for keys in self.variables:
-            count += 1
-
             # print(possibilties_dict.get(keys))
             string_ready_for_use += " " +  str(possibilties_dict.get(keys)) + "=" + str(keys)
-        print(count)
+        count = 0
+        list_without_space = "["
+        for item in dataset:
+            count += 1
+            if len(dataset) == count:
+                list_without_space += '"' + item + '"'
+            else:
+                list_without_space += '"' + item + '"' + ','
+        list_without_space += "]"
 
-        query = "source " + Pathways.BashScriptHumanMulti + " " + \
-                Pathways.input_file_Location + str(self.input_files) + ' ' + str(dataset) + " " + string_ready_for_use
+
+        query = "source " + Pathways.BashScriptHuman + " " + \
+                Pathways.input_file_Location + str(self.input_files) + ' ' +  list_without_space  + " " + string_ready_for_use
         # print(query)
         os.system(query)
 

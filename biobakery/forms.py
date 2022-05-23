@@ -20,6 +20,7 @@ class ApplicatonForm(forms.Form):
     tool_optons_humann = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=HUMAN_OPTIONS)
     project = forms.CharField(max_length=15)
     date = forms.DateField(widget=DateInput)
+    # unlock = forms.ChoiceField(widget=forms.CheckboxInput)
     input_file = forms.FileField()
 
 class NewUserForm(forms.Form):

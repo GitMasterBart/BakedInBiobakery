@@ -39,6 +39,7 @@ class Switcher:
         Switches between the tools and start the right process (single, multi)
         :starts: process
         """
+
         if self.tool == "human":
             print(self.input_file)
             ProcessesStarter(self.input_file, self.variables ).start_humann_multi()
