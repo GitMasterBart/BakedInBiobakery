@@ -3,7 +3,7 @@
 """
 Upload a file to a directory of choice
 """
-
+import Pathways
 from biobakery.appModels.checker import Checker
 
 class Uploader:
@@ -27,7 +27,7 @@ class Uploader:
         handles upload, and writes it to the directory of choice
         :return: void
         """
-        with open('/Users/bengels/Desktop/Uploaded_files/' + str(self.file), 'wb+') as destination:
+        with open(Pathways.uploaded_filepath + str(self.file), 'wb+') as destination:
             for chunk in self.file.chunks():
                 destination.write(chunk)
 

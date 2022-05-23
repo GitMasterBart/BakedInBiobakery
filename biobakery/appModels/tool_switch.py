@@ -16,10 +16,11 @@ class Switcher:
     that switch between multi and single uploads
     """
 
-    def __init__(self, tool, input_file, output_location):
+    def __init__(self, tool, input_file, variables):
         self.tool = tool
+        self.variables = variables
         self.input_file = input_file
-        self.output_location = output_location
+        self.output_location = variables
         self.prefix = str(self.input_file).split('.')[-1]
 
     def control_unzip_switch(self):
@@ -27,6 +28,7 @@ class Switcher:
         unzips the uploaded zip file.
         :return: void
         """
+        print(self.input_file)
         if Checker(self.input_file).check_zip():
             with zipfile.ZipFile(Pathways.input_file_Location + self.input_file, 'r') as zip_ref:
                 zip_ref.extractall(Pathways.input_file_Location)
@@ -37,8 +39,15 @@ class Switcher:
         Switches between the tools and start the right process (single, multi)
         :starts: process
         """
-        if self.tool == "human" and Checker(self.input_file).check_gz():
-            ProcessesStarter(self.input_file, self.output_location).start_humann_single()
-        elif self.tool == "human":
-            ProcessesStarter(self.input_file, self.output_location).start_humann_multi()
+        if self.tool == "human":
+            print(self.input_file)
+            ProcessesStarter(self.input_file, self.variables ).start_humann_multi()
 
+
+def main():
+    switch = Switcher("human", "poging2_v1.zip", "~/Desktop/output_data")
+    switch.control_unzip_switch()
+    # switch.tool_switch()
+
+if __name__ == '__main__':
+    main()

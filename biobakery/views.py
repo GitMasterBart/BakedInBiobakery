@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+
+from .appModels.start_processes import ProcessesStarter
 from .models import Users
 # from .appModels.start_processes import ProcessesStarter
 from .appModels.tool_switch import Switcher
@@ -35,14 +37,26 @@ class Uploadfiles(View):
     def post(self, request):
         form = ApplicatonForm(request.POST)
         newpage = ""
+        # print(form.fields['tool_optons_humann'].choices)
+        # print(request.POST.getlist('tool_optons_humann'))
+            ## tool data
+
         if request.method == 'POST' and request.FILES.get('input_file'):
             uploaded = Uploader(request.FILES.get('input_file'))
             if uploaded.check_file():
                 uploaded.handle_uploaded_file()
                 newpage = render(request, 'v2/succes_page.html')
-                switch = Switcher(request.POST.get("BiobakeryTool"),str(request.FILES.get('input_file')), "~/Desktop/output_data")
+                # print(str(request.FILES.get('input_file')))
+                switch = Switcher(request.POST.get("BiobakeryTool"), str(request.FILES.get('input_file')), request.POST.getlist('tool_optons_humann'))
                 switch.control_unzip_switch()
-                switch.tool_switch()
+                # switch.tool_switch()
+                # print(str(request.FILES.get('input_file')).split(".")[0])
+
+                total_list_variables = request.POST.getlist('tool_optons_humann') + request.POST.getlist('tool_optons_kneaddata')
+                total_list_options = form.fields['tool_optons_humann'].choices + form.fields['tool_optons_kneaddata'].choices
+                print(total_list_variables)
+                newactivatie = ProcessesStarter(str(request.FILES.get('input_file')).split(".")[0], total_list_variables, total_list_options)
+                newactivatie.start_humann_multi()
             else:
                 print("wrong prefix")
                 newpage = render(request, 'v2/Upload_form.html', {'form': form, "errormessage": "Your file does not "

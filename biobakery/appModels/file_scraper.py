@@ -22,6 +22,7 @@ class FileScraper:
     def __init__(self, file_pathway):
         self.file_path = file_pathway
         self.list_files = []
+        self.listdir_full_path = []
         self.listdir = []
         self.pngreadylist = []
 
@@ -36,12 +37,16 @@ class FileScraper:
             if os.path.isfile(objects_in_directory):
                 self.list_files.append(objects_in_directory)
             elif os.path.isdir(objects_in_directory):
-                self.listdir.append(objects_in_directory)
+                self.listdir_full_path.append(objects_in_directory)
+                self.listdir.append(file)
 
     def get_directory_list(self):
         """
-        :return: List: self.listdir
+        :return: List: self.listdir_full_path
         """
+        return self.listdir_full_path
+
+    def get_directory_list_onlynames(self):
         return self.listdir
 
     def get_fileset(self):
@@ -66,7 +71,7 @@ def main():
     main function pylint vault. Will be deleted when unnecessary
     :return:
     """
-    search_directory =  FileScraper("/static/fastqcfiles/images")
+    search_directory =  FileScraper("/static/fastqcfiles/images_after")
     search_directory.find_files_in_directories()
     search_directory.get_fileset()
     print(search_directory.get_pngreadyfiles())
