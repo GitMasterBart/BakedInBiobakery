@@ -37,11 +37,11 @@ class WriteToDb:
     add_research_to_adb, add_results_to_db )
     """
 
-    def __init__(self, file, initials, department, date, research_name):
-        self.file = file
+    def __init__(self, initials, department, research_name):
+
         self.initials = initials
         self.department = department
-        self.research = research_name + "_" + date + "_" + initials
+        self.research = research_name
 
         self.user_id = Users.objects.filter(initials=self.initials) \
             .values_list('User_id', flat=True).first()
@@ -87,7 +87,7 @@ class WriteToDb:
         except DataError:
             return "Datapoint already exists."
 
-    def add_results_to_db(self):
+    def add_results_to_db(self, file):
         """
         Adds all te result with the samples to a database if they doe not already exists.
         :return: if DataError: str("Datapoints already exists.")
@@ -97,7 +97,7 @@ class WriteToDb:
                                     user_id_id=self.user_id).exists():
             return exit(DataError)
         try:
-            transformed_table = pd.DataFrame(pd.melt(pd.read_table(self.file, lineterminator='\n'),
+            transformed_table = pd.DataFrame(pd.melt(pd.read_table(file, lineterminator='\n'),
                                                      id_vars="# Gene Family"))
             family = ""
             for i in range(len(transformed_table)):

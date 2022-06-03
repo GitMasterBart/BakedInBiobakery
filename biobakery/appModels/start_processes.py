@@ -19,10 +19,13 @@ class ProcessesStarter:
     a multi option. This makes it possible to upload one file or multiple files.
     """
 
-    def __init__(self, input_files, variables, possibilities):
+    def __init__(self, input_files, research_name, user_id, research_id, variables, possibilities):
         self.input_files = input_files
         self.variables = variables
         self.possibilities = possibilities
+        self.research_name = research_name
+        self.user_id = user_id
+        self.research_id = research_id
         # self.output_file = output_location
         self.prefix = str(self.input_files).split('.')[-1]
         # self.output_file_fastqc = Pathways.virtual_envPathwayfastqc +
@@ -64,8 +67,7 @@ class ProcessesStarter:
         list_without_space += "]"
 
 
-        query = "source " + Pathways.BashScriptHuman + " " + \
-                Pathways.input_file_Location + str(self.input_files) + ' ' +  list_without_space  + " " + string_ready_for_use
+        query = "source " + Pathways.BashScriptHuman + " " + Pathways.input_file_Location + str(self.input_files) + ' ' + str(self.research_name) + ' ' + str(self.user_id) +  ' ' + str(self.research_id) + ' ' +  list_without_space  + " " + string_ready_for_use
         # print(query)
         os.system(query)
 

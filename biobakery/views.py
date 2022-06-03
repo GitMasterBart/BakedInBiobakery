@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from .appModels.start_processes import ProcessesStarter
-from .models import Users
+from .models import Users, Researches
 # from .appModels.start_processes import ProcessesStarter
 from .appModels.tool_switch import Switcher
 
@@ -31,8 +31,8 @@ class HomeViews(View):
 class Uploadfiles(View):
     def get(self, request):
         form = ApplicatonForm()
-        username = request.session.get('username')
-        return render(request, "v2/Upload_form.html", {'form': form, "username" : username})
+        initials = request.session.get('username')
+        return render(request, "v2/Upload_form.html", {'form': form, "username" : initials})
 
     def post(self, request):
         form = ApplicatonForm(request.POST)
@@ -44,6 +44,12 @@ class Uploadfiles(View):
         if request.method == 'POST' and request.FILES.get('input_file'):
             uploaded = Uploader(request.FILES.get('input_file'))
             if uploaded.check_file():
+                # adding research to db
+                initials = request.session.get('username')
+                research_name = request.POST.get("project") + "_" + request.POST.get("date") + "_" + str(initials)
+                createdb = WriteToDb(initials, "Microbiologie", research_name)
+                createdb.add_research_to_db()
+
                 uploaded.handle_uploaded_file()
                 newpage = render(request, 'v2/succes_page.html')
                 # print(str(request.FILES.get('input_file')))
@@ -52,10 +58,15 @@ class Uploadfiles(View):
                 # switch.tool_switch()
                 # print(str(request.FILES.get('input_file')).split(".")[0])
 
+                user_id = Users.objects.filter(initials=initials) \
+                    .values_list('User_id', flat=True).first()
+                research_id = Researches.objects.filter(name=research_name) \
+                    .values_list('researches_id', flat=True).first()
+
                 total_list_variables = request.POST.getlist('tool_optons_humann') + request.POST.getlist('tool_optons_kneaddata')
                 total_list_options = form.fields['tool_optons_humann'].choices + form.fields['tool_optons_kneaddata'].choices
-                print(total_list_variables)
-                newactivatie = ProcessesStarter(str(request.FILES.get('input_file')).split(".")[0], total_list_variables, total_list_options)
+                newactivatie = ProcessesStarter(str(request.FILES.get('input_file')).split(".")[0],
+                                                research_name, user_id, research_id, total_list_variables, total_list_options)
                 newactivatie.start_humann_multi()
             else:
                 print("wrong prefix")
@@ -80,14 +91,19 @@ class AddUser(View):
         add_user_form = NewUserForm()
         if request.method == 'POST':
             initials = request.POST.get("initials")
-            createdb = WriteToDb("/Users/bengels/Desktop/output_data/output_gentable.tsv", initials,
-                                         "Microbiologie",
-                                         "2022-05-03", "FirstTestOnderzoek")
+            # needs to be made dynamic
+            createdb = WriteToDb(initials, "Microbiologie", "placeholder")
             createdb.add_users_to_db()
             os.system("python manage.py runserver")
         return redirect("/biobakery/Home")
 
+class Information:
+    def get(self, request):
+        add_user_form = NewUserForm()
+        return render(request, "v2/info_page.html", {'form': add_user_form})
 
+    def post(selfs, request):
 
+        return redirect("/biobakery/Home")
 
 
