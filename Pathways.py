@@ -17,3 +17,9 @@ imgFasqc_folder = "/Users/bengels/Desktop/StageWetsus2022/BakedInBiobakery/stati
 # uploaded filepath
 
 uploaded_filepath = "/Users/bengels/Desktop/Uploaded_files/"
+
+#databases
+unireffull = "/Users/bengels/Desktop/Uploaded_files/humann_dbs/unireffull/"
+chocophlan = "/Users/bengels/Desktop/Uploaded_files/humann_dbs/chocophlan"
+slivadatabase = "/Users/bengels/Desktop/Uploaded_files/humann_dbs/silvadb"
+trimmomatic = "~/Desktop/kneaddataMap/Trimmomatic-0.36/"
