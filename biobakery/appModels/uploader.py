@@ -20,14 +20,14 @@ class Uploader:
         it is easier for usage in views.py.
         :return:
         """
-        return Checker(self.file).check_gz_zip()
+        return Checker(self.file).check_zip()
 
     def handle_uploaded_file(self):
         """
         handles upload, and writes it to the directory of choice
         :return: void
         """
-        with open(Pathways.uploaded_filepath + str(self.file), 'wb+') as destination:
+        with open(Pathways.LOCATIONUPLOADEDFILES + str(self.file), 'wb+') as destination:
             for chunk in self.file.chunks():
                 destination.write(chunk)
 

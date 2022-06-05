@@ -46,7 +46,7 @@ class ProcessesStarter:
 
         string_ready_for_use = ""
         count = 0
-        new_list_filse = FileScraper(Pathways.uploaded_filepath + str(self.input_files))
+        new_list_filse = FileScraper(Pathways.LOCATIONUPLOADEDFILES + str(self.input_files))
         new_list_filse.find_files_in_directories()
 
         dataset = new_list_filse.get_directory_list_onlynames()
@@ -67,7 +67,7 @@ class ProcessesStarter:
         list_without_space += "]"
 
 
-        query = "source " + Pathways.BashScriptHuman + " " + Pathways.input_file_Location + str(self.input_files) + ' ' + str(self.research_name) + ' ' + str(self.user_id) +  ' ' + str(self.research_id) + ' ' +  list_without_space  + " " + string_ready_for_use
+        query = "source " + Pathways.LOCATIONBASHSCRIPTHUMAN + " " + Pathways.INPUTFILESLOCATION + str(self.input_files) + ' ' + str(self.research_name) + ' ' + str(self.user_id) + ' ' + str(self.research_id) + ' ' + list_without_space + " " + string_ready_for_use
         # print(query)
         os.system(query)
 

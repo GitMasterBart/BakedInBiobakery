@@ -9,6 +9,7 @@ import Pathways
 # from biobakery.appModels.file_scraper import FileScraper
 from biobakery.appModels.start_processes import ProcessesStarter
 from biobakery.appModels.checker import Checker
+from biobakery.appModels.file_scraper import FileScraper
 
 class Switcher:
     """
@@ -23,15 +24,16 @@ class Switcher:
         self.output_location = variables
         self.prefix = str(self.input_file).split('.')[-1]
 
+
     def control_unzip_switch(self):
         """
         unzips the uploaded zip file.
         :return: void
         """
-        print(self.input_file)
+
         if Checker(self.input_file).check_zip():
-            with zipfile.ZipFile(Pathways.input_file_Location + self.input_file, 'r') as zip_ref:
-                zip_ref.extractall(Pathways.input_file_Location)
+            with zipfile.ZipFile(Pathways.INPUTFILESLOCATION + self.input_file, 'r') as zip_ref:
+                zip_ref.extractall(Pathways.INPUTFILESLOCATION)
             self.input_file = str(self.input_file).split('.')[0]
 
     def tool_switch(self):
@@ -41,7 +43,6 @@ class Switcher:
         """
 
         if self.tool == "human":
-            print(self.input_file)
             ProcessesStarter(self.input_file, self.variables ).start_humann_multi()
 
 
