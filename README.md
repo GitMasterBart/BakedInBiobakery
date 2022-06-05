@@ -70,10 +70,8 @@ LOCATIONBASHSCRIPTHUMAN = "[PATH_TO_PROJECT]/BakedInBiobakery/static/sh_scripts/
 LOCATIONUNIREFFPULLDATABASE = "homes/user/database_map/unirefdatabase"
 ```
 
-
-
-
+*Bibliografie:*
 
 [^1]: Karengera, A., Sterken, M. G., Kammenga, J. E., Riksen, J. A. G., Dinkla, I. J. T., & Murk, A. J. (2022). Differential expression of genes in c. elegans reveals transcriptional responses to indirect-acting xenobiotic compounds and insensitivity to 2,3,7,8-tetrachlorodibenzodioxin. Ecotoxicology and Environmental Safety, 233. https://doi.org/10.1016/j.ecoenv.2022.113344
 
-[^2]: Pevsner, J. (2015). Bioinformatics and Functional Genomics. Third Edition. In Briefings in Functional Genomics and Proteomics.
+[^2]: Pevsner, J. (2015). Bsioinformatics and Functional Genomics. Third Edition. In Briefings in Functional Genomics and Proteomics.
