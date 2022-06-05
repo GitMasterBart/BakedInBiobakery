@@ -82,7 +82,7 @@ class Uploadfiles(View):
                         error_massage = Error_messages.FIlESINZIPNOTCORRECT
                         newpage = render(request, 'v2/error_page.html', {'error_massage': error_massage})
                     newactivatie = ProcessesStarter(str(input_file).split(".")[0],
-                                                    research_name, user_id, research_id, total_list_variables, total_list_options)
+                                                            research_name, user_id, research_id, total_list_variables, total_list_options)
                     newactivatie.start_humann_multi()
                 except FileNotFoundError:
                     error_massage = Error_messages.FILENOTFOUNDERROR

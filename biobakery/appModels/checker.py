@@ -43,7 +43,8 @@ class Checker:
         file = FileScraper(self.input_file_without_extention)
         file.find_files_in_directories()
         inner_directorys = file.get_directory_list_onlynames()
-        inner_directorys.remove(".snakemake")
+        if ".snakemake" in inner_directorys:
+            inner_directorys.remove(".snakemake")
         for dir in inner_directorys:
             inner_files = FileScraper(self.input_file_without_extention  + "/" + dir)
             inner_files.find_files_in_directories()
