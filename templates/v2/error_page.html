@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "v2/base.html" %}
+{% load static %}
+{% block background %}
+<div class = bg-image
+     style="
+          background-image: url({% static 'img/IMG_1058.png' %});
+          height: 100vh;background-repeat: no-repeat; background-size: cover; background-position: center center; opacity: 40%; background-color: black;
+        ">
+</div>
+{% endblock %}
+{% block navitems %}
+                        <li class="nav-item active">
+                            <strong><a class="nav-link" href="information">Information <span class="sr-only">(current)</span></a></strong>
+                        </li>
+{% endblock %}
+
+{% block pagecontent %}
+    <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center m-5" data-wow-delay="0.3s" style="text-align: center">
+            <h3 style="color: red;"> {{ error_massage }}</h3>
+
+{#            <h5 style="align-self: center"> <a href="info_page.html"> Instructions</a> </h5>#}
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script><!-- Custom scripts -->
+<script type="text/javascript"></script>
+
+
+{% endblock %}

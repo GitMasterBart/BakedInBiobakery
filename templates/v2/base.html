@@ -7,7 +7,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
 {#    <meta http-equiv="refresh" content="10">#}
     <title>Home</title>
-    <!-- MDB icon -->
+
     <link rel="icon" href="{% static 'img/Wetsus-1.png' %}" type="image/x-icon" />
     <!-- Font Awesome -->
     <link
@@ -35,7 +35,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-        {% block navitems %} }
+        {% block navitems %}
+            <li class="nav-item active">
+                            <strong><a class="nav-link" href="#">Contact <span class="sr-only">(current)</span></a></strong>
+            </li>
         {% endblock %}
     </ul>
     </div>
