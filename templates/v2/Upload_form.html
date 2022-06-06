@@ -28,7 +28,7 @@
 
         <div class="d-flex justify-content-center m-5" data-wow-delay="0.3s">
 
-            <form class="text-center border border-light p-5" name="uploadForm" enctype="multipart/form-data" method=post>
+            <form id="upload-form" class="text-center border border-light p-5" name="uploadForm" enctype="multipart/form-data" method=post>
                 <p class="h4 ">MetaData + file-upload</p>
 
                 <p class="h5 mb-3 " > Welkom {{ username }}</p>
@@ -40,11 +40,12 @@
                 {% endif %}
             </form>
 
-            <div id="myProgress">
-    <div id="myBar"></div>
-</div>
+{#            <div id="progress-box" class="not-visible">progress</div>#}
+{#            <div id="cancel-box" class="not-visible">#}
+{#                <button id="cancel-btn" class="btn-danger">cancel</button>#}
+{#            </div>#}
             
-            <div class="spinner-border invisible" role="status" id = roler></div>
+
 
         </div>
 
@@ -57,16 +58,22 @@
 <script type="text/javascript"></script>
 
 <script>
-    let formbox = document.getElementById("uploadForm");
-    let spinnerbox = document.getElementById("roler");
-    let submitbutton = document.getElementById("submit")
+    console.log("hello world")
+    let uploadform = document.getElementById("upload-form")
+    console.log(uploadform)
+    let input = document.getElementById("submit")
+    console.log(input)
 
-    submitbutton.addEventListener("click", formbox.classList.add("invisible"))
-    console.log(submitbutton)
-    console.log(formbox)
-    console.log(spinnerbox)
+    let progressBox = document.getElementById("progress-box")
+    let cancelBox = document.getElementById("cancel-box")
+    let cancelBtn = document.getElementById("cancel-btn")
 
-     formbox.style.display = "none"
+    let csrf = document.getElementsByName('csrfmiddlewaretoken')
+
+    input.addEventListener('change', () =>{
+        progressBox.classList.remove('not-visible')
+        cancelBox.classList.remove('not-visible')
+    })
 
 
 </script>
