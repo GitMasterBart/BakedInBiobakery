@@ -19,7 +19,8 @@ class ProcessesStarter:
     a multi option. This makes it possible to upload one file or multiple files.
     """
 
-    def __init__(self, input_files, research_name, user_id, research_id, variables, possibilities):
+    def __init__(self, tool, input_files, research_name, user_id, research_id, variables, possibilities):
+        self.tool = tool
         self.input_files = input_files
         self.variables = variables
         self.possibilities = possibilities
@@ -45,7 +46,7 @@ class ProcessesStarter:
         # print(possibilties_dict)
 
         string_ready_for_use = ""
-        count = 0
+        bashscript = Pathways.LOCATIONBASHSCRIPTHUMAN
         new_list_filse = FileScraper(Pathways.LOCATIONUPLOADEDFILES + str(self.input_files))
         new_list_filse.find_files_in_directories()
 
@@ -66,8 +67,12 @@ class ProcessesStarter:
                 list_without_space += '"' + item + '"' + ','
         list_without_space += "]"
 
+        if self.tool == "kneaddata":
+            bashscript = Pathways.LOCATIONBASHSCRIPTKNEADDATA
+        elif self.tool == "human":
+            bashscript = Pathways.LOCATIONBASHSCRIPTHUMAN
 
-        query = "source " + Pathways.LOCATIONBASHSCRIPTHUMAN + " " + Pathways.INPUTFILESLOCATION + str(self.input_files) + ' ' + str(self.research_name) + ' ' + str(self.user_id) + ' ' + str(self.research_id) + ' ' + list_without_space + " " + string_ready_for_use
+        query = "source " + bashscript + " " + Pathways.INPUTFILESLOCATION + str(self.input_files) + ' ' + str(self.research_name) + ' ' + str(self.user_id) + ' ' + str(self.research_id) + ' ' + list_without_space + " " + string_ready_for_use
         # print(query)
         os.system(query)
 

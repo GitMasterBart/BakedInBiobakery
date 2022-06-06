@@ -45,11 +45,13 @@ class Checker:
         inner_directorys = file.get_directory_list_onlynames()
         if ".snakemake" in inner_directorys:
             inner_directorys.remove(".snakemake")
+        print(inner_directorys)
         for dir in inner_directorys:
             inner_files = FileScraper(self.input_file_without_extention  + "/" + dir)
             inner_files.find_files_in_directories()
             filelist = inner_files.get_fileset()
-            filelist.remove(".DS_Store")
+            if ".DS_Store" in filelist:
+                filelist.remove(".DS_Store")
             for file in filelist:
                 if not dir in file:
                     return True
