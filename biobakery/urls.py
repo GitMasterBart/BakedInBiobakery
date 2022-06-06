@@ -12,5 +12,7 @@ urlpatterns = [
     path('Upload', Uploadfiles.as_view() ),
     path('succes', SuccesVieuws.as_view()),
     path('addUser', AddUser.as_view()),
-    path('information', Information.as_view())
+    path('information', Information.as_view()),
+    path('fastqcCheck', FastqcCheck.as_view()),
+
 ]

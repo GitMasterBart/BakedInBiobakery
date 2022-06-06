@@ -1,3 +1,5 @@
+from zipfile import BadZipFile
+
 from django.shortcuts import render, redirect
 
 import Pathways
@@ -23,7 +25,7 @@ class HomeViews(View):
         os.system("python manage.py runserver")
         intitals = Users.objects.all()
         print(intitals)
-        return render(request, "v2/Home.html", {'intials' : intitals})
+        return render(request, "v2/Home.html", {'intials': intitals})
 
     def post(self, request):
         intitals = Users.objects.all()
@@ -31,19 +33,22 @@ class HomeViews(View):
             request.session['username'] = request.POST.get("initials_user")
         return redirect("/biobakery/Upload")
 
+
 class Uploadfiles(View):
     def get(self, request):
         form = ApplicatonForm()
         initials = request.session.get('username')
-        return render(request, "v2/Upload_form.html", {'form': form, "username" : initials})
+        return render(request, "v2/Upload_form.html", {'form': form, "username": initials})
 
     def post(self, request):
         form = ApplicatonForm(request.POST)
         newpage = ""
         # print(form.fields['tool_optons_humann'].choices)
         # print(request.POST.getlist('tool_optons_humann'))
-            ## tool data
+        ## tool data
         input_file = request.FILES.get('input_file')
+        used_tool = "compleet"
+        request.session["input_file"] = str(input_file).split(".")[0]
 
         if request.method == 'POST' and input_file:
             uploaded = Uploader(input_file)
@@ -51,19 +56,25 @@ class Uploadfiles(View):
                 # adding research to db
                 initials = request.session.get('username')
                 research_name = request.POST.get("project") + "_" + request.POST.get("date") + "_" + str(initials)
+                request.session['research_name'] = research_name
                 createdb = WriteToDb(initials, "Microbiologie", research_name)
                 createdb.add_research_to_db()
 
                 try:
                     uploaded.handle_uploaded_file()
-                except: #nee to be added:
-                    error_massage = " "
+                except BadZipFile:
+                    error_massage = Error_messages.WRONGEXTENTIONERROR
                     newpage = render(request, 'v2/error_page.html', {'error_massage': error_massage})
 
                 newpage = render(request, 'v2/succes_page.html')
                 # print(str(request.FILES.get('input_file')))
-                switch = Switcher(request.POST.get("BiobakeryTool"), str(request.FILES.get('input_file')), request.POST.getlist('tool_optons_humann'))
-                switch.control_unzip_switch()
+                try:
+                    switch = Switcher(request.POST.get("BiobakeryTool"), str(request.FILES.get('input_file')),
+                                      request.POST.getlist('tool_optons_humann'))
+                    switch.control_unzip_switch()
+                except BadZipFile:
+                    error_massage = Error_messages.WRONGEXTENTIONERROR
+                newpage = render(request, 'v2/error_page.html', {'error_massage': error_massage})
                 # switch.tool_switch()
                 # print(str(request.FILES.get('input_file')).split(".")[0])
 
@@ -72,32 +83,50 @@ class Uploadfiles(View):
                 research_id = Researches.objects.filter(name=research_name) \
                     .values_list('researches_id', flat=True).first()
 
-                total_list_variables = request.POST.getlist('tool_optons_humann') + request.POST.getlist('tool_optons_kneaddata')
-                total_list_options = form.fields['tool_optons_humann'].choices + form.fields['tool_optons_kneaddata'].choices
+                USEDOPTIONSKNEADDATA = request.POST.getlist('tool_optons_kneaddata')
+                USEDOPTIONSHUMANTOOL = request.POST.getlist('tool_optons_humann')
+                total_list_variables = USEDOPTIONSHUMANTOOL + USEDOPTIONSKNEADDATA
+
+                request.session['options_human'] = USEDOPTIONSHUMANTOOL
 
 
+                POSSILBLEOPTIONSKNEADDATA = form.fields['tool_optons_kneaddata'].choices
+                POSSILBLEOPTIONSHUMANTOOL = form.fields['tool_optons_humann'].choices
+                total_list_options = POSSILBLEOPTIONSHUMANTOOL + POSSILBLEOPTIONSKNEADDATA
+
+                request.session['possible_options_human'] = POSSILBLEOPTIONSHUMANTOOL
 
                 try:
                     if Checker(Pathways.INPUTFILESLOCATION + str(input_file)).check_if_exist():
                         error_massage = Error_messages.FIlESINZIPNOTCORRECT
                         newpage = render(request, 'v2/error_page.html', {'error_massage': error_massage})
-                    newactivatie = ProcessesStarter(str(input_file).split(".")[0],
-                                                            research_name, user_id, research_id, total_list_variables, total_list_options)
+                    print(len(USEDOPTIONSKNEADDATA))
+                    if len(USEDOPTIONSKNEADDATA) > 3:
+                        used_tool = "kneaddata"
+                        newpage = redirect("/biobakery/fastqcCheck")
+
+                    newactivatie = ProcessesStarter(used_tool, str(input_file).split(".")[0],
+                                                    research_name, user_id, research_id, total_list_variables,
+                                                    total_list_options)
                     newactivatie.start_humann_multi()
+
                 except FileNotFoundError:
                     error_massage = Error_messages.FILENOTFOUNDERROR
                     newpage = render(request, 'v2/error_page.html', {'error_massage': error_massage})
 
             else:
 
-                newpage = render(request, 'v2/Upload_form.html', {'form': form, "error_message": Error_messages.WRONGEXTENTIONERROR})
+                newpage = render(request, 'v2/Upload_form.html',
+                                 {'form': form, "error_message": Error_messages.WRONGEXTENTIONERROR})
             # print(str(request.FILES.get('input_file')) + " "  + str(request.POST.get('project'))
             #       + " "  + str(request.POST.get('date')))
         return newpage
 
+
 class SuccesVieuws(View):
     def get(self, request):
         return render(request, "v2/succes_page.html")
+
 
 class AddUser(View):
     def get(self, request):
@@ -114,16 +143,44 @@ class AddUser(View):
             os.system("python manage.py runserver")
         return redirect("/biobakery/Home")
 
+
 class Information(View):
     def get(self, request):
         add_user_form = NewUserForm()
         return render(request, "v2/info_page.html", {'form': add_user_form})
 
     def post(selfs, request):
-
         return redirect("/biobakery/Home")
 
 
+class FastqcCheck(View):
+    def get(self, request):
+        # if (os.listdir(Pathways.FASTQCIMGFOLDER))
+        png = os.listdir(Pathways.FASTQCIMGFOLDER)
+        # while len(os.listdir(Pathways.FASTQCIMGFOLDER)) == 0:
+        #     os.system("while true; do python manage.py runserver; sleep 200; done")
+        return render(request, "v2/fastqc_check_page.html", {"png": png})
+        # return render(request, "v2/fastqc_check_page.html" ,{"png" : png} )
 
+    def post(selfs, request):
+        if request.method == 'POST' and "next" in request.POST:
+            initials = request.session.get('username')
+            research_name = request.session.get("research_name")
+            print(research_name)
+            input_file = request.session.get("input_file")
+            used_tool = "compleet"
+            user_id = Users.objects.filter(initials=initials) \
+                .values_list('User_id', flat=True).first()
+            research_id = Researches.objects.filter(name=research_name) \
+                .values_list('researches_id', flat=True).first()
+            total_list_variables = request.session.get('options_human')
+            total_list_options = request.session.get('possible_options_human')
 
+            newactivatie = ProcessesStarter(used_tool, input_file,
+                                            research_name, user_id, research_id, total_list_variables,
+                                            total_list_options)
+            newactivatie.start_humann_multi()
+            return render(request, "v2/succes_page.html")
 
+        elif request.method == 'POST' and "next" in request.POST:
+            return redirect("/biobakery/Upload")
