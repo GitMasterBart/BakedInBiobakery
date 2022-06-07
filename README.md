@@ -1,9 +1,17 @@
 # BakedInBiobakery
 
-# Table of Contents
+## Table of Contents
 
 1. [Intent](#intent)
-2. [Using it](#using)
+2. [Getting ready for using](#usage)
+   1. [Getting it on your computer](#getting_start)
+   2. [Make it work](#make_it_work)
+      1. [Packages](#packages)
+      2. [Pathways](#pathways)
+   3. [Using it](#using)
+      1. [Adding your initials to db](#adding_int)
+      2. [Starting process](#Starting)
+3. [Bibliografie](#bibliografie)
 
 
 ![Flowchart application](static/img/flowchart/flowchart.png)
@@ -17,9 +25,10 @@ The Biobakery is a tool package that facilitates the analysis of transcriptome d
 The Biobakery is made for use in a non-graphical environment as shown in Figure1. For the average user, this is not advantageous in terms of usability. Therefore, it is common for students and even for professionals not to use these tools. 
 To help encourage more people to work with these tools, the idea was conceived to create an usable application around them as shown in Figure2. The purpose of this application is not only to run the tools, but also to store the output data in a smart, easy-to-access and easy-to-interpret way.
 
+<a name="usage"></a>
+## Getting ready for using
 
-## Usage
-
+<a name="getting_start"></a>
 ### 1) Getting it on your computer
 **Not User Ready.**
 
@@ -29,9 +38,9 @@ First clone the both the BakedinBiobakery and the SnakePipeMultiHumaNn set the S
  $ cd biobakery/appModels 
  $ git clone https://github.com/GitMasterBart/SnakePipeMultiHumaNn.git
  ```
-
+<a name="make_it_work"></a>
 ### 2) Make it work
-
+<a name="packages"></a>
 #### 2.1) Packages
 
 Now create a virtual enviorement (venv/conda). And install
@@ -66,6 +75,7 @@ sudo apt-get install bowtie
 *For mac:*
 ``su apt-get install bowtie``
 
+<a name="pathways"></a>
 #### 2.2) Pathways
 
 Go to the file `Patways.py`. This file contains al the packages that are used in this application. 
@@ -126,7 +136,8 @@ $ python manage.py runserver
 <a name="using"></a>
 ### 3) Using it
 
-#### 3.1) Adding your initials too db
+<a name="adding_int"></a>
+#### 3.1) Adding your initials to db
 
 I understand that you are trilled to use this web-application, but first we need you to add yourself as a user.
 This can be done in on the page `addUsers`. If it runs on your localhost you can find it under: 
@@ -140,6 +151,7 @@ Now that you have added yourself to the database the application can be used.
 
 ***note:** it can take a while before the pages are refreshed and your name shows op in the sing in screen.*
 
+<a name="Starting"></a>
 #### 3.2) Starting process
 
 After you have singed in, you will be redirected to the upload screen. On this page
@@ -156,7 +168,7 @@ you wil get a message.**"
 
 ***note:** To make fully use of the application all parameters are recommended (only `--verdose` is really optional)* 
 
-
+<a name="bibliografie"></a>
 *Bibliografie:*
 
 [^1]: Beghini, F., McIver, L. J., Blanco-Míguez, A., Dubois, L., Asnicar, F., Maharjan, S., Mailyan, A., Manghi, P., Scholz, M., Thomas, A. M., Valles-Colomer, M., Weingart, G., Zhang, Y., Zolfo, M., Huttenhower, C., Franzosa, E. A., & Segata, N. (2021). Integrating taxonomic, functional, and strain-level profiling of diverse microbial communities with biobakery 3. ELife, 10. https://doi.org/10.7554/eLife.65088
