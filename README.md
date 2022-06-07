@@ -1,8 +1,15 @@
 # BakedInBiobakery
 
+# Table of Contents
+
+1. [Intent](#intent)
+2. [Using it](#using)
+
+
 ![Flowchart application](static/img/flowchart/flowchart.png)
 *Figure1: Shows the functionality of the application. The different colored arrows show which processes belong together.*
 
+<a name="intent"></a>
 ## Intent
 
 The Biobakery is a tool package that facilitates the analysis of transcriptome data (Beghini et al., 2021)[^1]. Transcriptome data shows which genes are active, and to what extent these genes are active at the time of measurement (Pevsner, 2015, p. 479) [^2]. By doing this for multiple samples of interest, it is possible to see if there are changes or differences in gene expression. When there are changes in an environment, genes can be up- or down regulated. If this is done in a controlled environment, the changes in gene expression can be related to the changes in the environment. In this way, the influence of substances on organisms in an environment can be investigated. 
@@ -116,6 +123,7 @@ $ python manage.py runserver
 *make sure that you are in the **root** map, and that the venv is **activated***
 *reminder `source [path_to_venv]/bin/activate`*
 
+<a name="using"></a>
 ### 3) Using it
 
 #### 3.1) Adding your initials too db
