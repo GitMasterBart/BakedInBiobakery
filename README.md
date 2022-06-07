@@ -22,8 +22,8 @@
 
 The Biobakery is a tool package that facilitates the analysis of transcriptome data (Beghini et al., 2021)[^1]. Transcriptome data shows which genes are active, and to what extent these genes are active at the time of measurement (Pevsner, 2015, p. 479) [^2]. By doing this for multiple samples of interest, it is possible to see if there are changes or differences in gene expression. When there are changes in an environment, genes can be up- or down regulated. If this is done in a controlled environment, the changes in gene expression can be related to the changes in the environment. In this way, the influence of substances on organisms in an environment can be investigated. 
  
-The Biobakery is made for use in a non-graphical environment as shown in Figure1. For the average user, this is not advantageous in terms of usability. Therefore, it is common for students and even for professionals not to use these tools. 
-To help encourage more people to work with these tools, the idea was conceived to create an usable application around them as shown in Figure2. The purpose of this application is not only to run the tools, but also to store the output data in a smart, easy-to-access and easy-to-interpret way.
+The Biobakery is made for use in a non-graphical environment. For the average user, this is not advantageous in terms of usability. Therefore, it is common for students and even for professionals not to use these tools. 
+To help encourage more people to work with these tools, the idea was conceived to create an usable application around. The purpose of this application is not only to run the tools, but also to store the output data in a smart, easy-to-access and easy-to-interpret way.
 
 <a name="usage"></a>
 ## Getting ready for using
