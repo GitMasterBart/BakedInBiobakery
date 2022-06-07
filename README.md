@@ -17,7 +17,7 @@ To help encourage more people to work with these tools, the idea was conceived t
 **Not User Ready.**
 
 First clone the both the BakedinBiobakery and the SnakePipeMultiHumaNn set the SnakePipeMultiHumaNn in the `biobakery/appModels` directory : 
-```
+```shell
  $ git clone https://github.com/GitMasterBart/BakedInBiobakery.git
  $ cd biobakery/appModels 
  $ git clone https://github.com/GitMasterBart/SnakePipeMultiHumaNn.git
@@ -30,18 +30,19 @@ First clone the both the BakedinBiobakery and the SnakePipeMultiHumaNn set the S
 Now create a virtual enviorement (venv/conda). And install
 all the following packages. 
 
-```
+```shell
 $ pip install [package]
 ```
 or 
 
-```
+```shell
 $ conda install [package]
 ```
 
 **For running django:**
 * Django
 * pymsql
+* Mysql (or another database server)
 
 **Used for the biobakery snakefile-pipeline:** 
 * human
@@ -69,6 +70,84 @@ LOCATIONBASHSCRIPTHUMAN = "[PATH_TO_PROJECT]/BakedInBiobakery/static/sh_scripts/
 # database example
 LOCATIONUNIREFFPULLDATABASE = "homes/user/database_map/unirefdatabase"
 ```
+
+After changing all the pathways in the `Patways.py` file you need tho change the file paths in the scripts `static/sh_scripts/`. 
+The pathways that are set in this file look like:
+```shell
+source [PATWAY_TO_VENV]
+
+cd [PATWAY_TO_SNAKEMAKE_FILE]
+```
+<details>
+  <summary><b>Extra options: <u>Slurm</u> in snakefile query:</b></summary>
+  <p>If you want to use slurm a snakefile add "sbatch" like this:</p>
+<code>snakemake --cluster "sbatch" --cores 2 --jobs 200 --config inputfiles=$1 name=$2 user_index=$3 research_index=$4 dataset=$5 $6 $7 $8 $9 ${10} ${11} ${12} ${13} ${14} ${15} ${16} &
+ </code> 
+<p>There are also options for adding more details to your sbatch syntax: </p>
+<code> --cluster "sbatch -A {cluster.account} -p {cluster.partition} -n {cluster.n}  -t {cluster.time}"</code>
+</details>
+
+To use databases first you need to create a database, as a tip call this database `biobakery`. when this dabase is created 
+you need to add a department to the department table in this case call this department: `Microbiologie`. 
+Now it is time for the next step: fill in `djangoProject/settings.py.DATABASES` as shown below: 
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': [NAME_DATABASE],
+        'USER': [NAME_USER],
+        'PASSWORD': [PASSWORD],
+        'HOST': [SERVER],
+        'PORT': [PORT],
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
+    }
+}
+```
+
+if you have done this, the program will be ready running. 
+
+type in your terminal: 
+
+```shell 
+$ python manage.py runserver
+```
+*make sure that you are in the **root** map, and that the venv is **activated***
+*reminder `source [path_to_venv]/bin/activate`*
+
+### 3) Using it
+
+#### 3.1) Adding your initials too db
+
+I understand that you are trilled to use this web-application, but first we need you to add yourself as a user.
+This can be done in on the page `addUsers`. If it runs on your localhost you can find it under: 
+```http request
+http://127.0.0.1:8000/biobakery/addUser
+``` 
+You can also just go to `http://127.0.0.1:8000/biobakery/Home` and click on "Your initials 
+are not there?" in the sign in screen.
+
+Now that you have added yourself to the database the application can be used. 
+
+***note:** it can take a while before the pages are refreshed and your name shows op in the sing in screen.*
+
+#### 3.2) Starting process
+
+After you have singed in, you will be redirected to the upload screen. On this page
+you can choose witch parameters you want to use in your pipeline. 
+
+***note:** if you decide to not use the --fastqc-end and --fastqc-start as kneaddata 
+variables it will not be possible to evaluate the reads* 
+
+After you have decided witch parameter you want to use, the pipeline will start. 
+There are two options: 1) you wil be redirected to a page where the reads can be evaluated. or 2) The complete pipeline will run and the follow text wil be shown: 
+"**Great your file is sent to the system, 
+when the chosen tool is finished with all the hard work 
+you wil get a message.**"
+
+***note:** To make fully use of the application all parameters are recommended (only `--verdose` is really optional)* 
+
 
 *Bibliografie:*
 
