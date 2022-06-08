@@ -34,7 +34,7 @@
         aria-controls="flush-collapseOne"
         style="background: rgb(255,255,255, .2) "
       >
-        Transcriptomics
+          <h3>Transcriptomics</h3>
       </button>
     </h2>
     <div
@@ -44,7 +44,26 @@
       data-mdb-parent="#accordionFlushExample"
     >
       <div class="accordion-body">
-                <h1>The Biobakery</h1>
+          [32] Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium
+          doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis
+          et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,
+          quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
+          eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum,
+          quia dolor sit amet consectetur adipisci[ng] velit, sed quia non numquam [do]
+          eius modi tempora inci[di]dunt, ut labore et dolore magnam aliquam quaerat voluptatem.
+          Ut enim ad minima veniam, quis nostrum[d] exercitationem ullam corporis suscipit laboriosam,
+          nisi ut aliquid ex ea commodi consequatur? <br> [D]Quis autem vel eum iure reprehenderit, qui in ea
+          voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat,
+          quo voluptas nulla pariatur? [33] At vero eos et accusamus et iusto odio dignissimos ducimus,
+          qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias
+          excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt
+          mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
+          distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit,
+          quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor
+          repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe
+          eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic
+          tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis
+          doloribus asperiores repellat.
       </div>
     </div>
   </div>
@@ -61,7 +80,7 @@
         aria-controls="flush-collapseTwo"
         style="background: rgb(255,255,255, .2) "
       >
-       Biobakery
+          <h3>Biobakery</h3>
       </button>
     </h2>
     <div
@@ -71,16 +90,74 @@
       data-mdb-parent="#accordionFlushExample"
     >
       <div class="accordion-body">
+               The biobakery github= <a href="https://github.com/biobakery/">https://github.com/biobakery/</a>
+          <br>
+                The biobakery/HumaNn3.0 github= <a href="https://github.com/biobakery/humann"> https://github.com/biobakery/humann</a>
 
+      </div>
+    </div>
+  </div>
+
+               <div class="accordion-item" style="background: rgb(255,255,255, .2) ">
+    <h2 class="accordion-header" id="flush-headingTree">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#flush-collapseTree"
+        aria-expanded="false"
+        aria-controls="flush-collapseTree"
+        style="background: rgb(255,255,255, .2) ">
+          <h3>Usages</h3>
+      </button>
+    </h2>
+    <div
+      id="flush-collapseTree"
+      class="accordion-collapse collapse"
+      aria-labelledby="flush-headingTree"
+      data-mdb-parent="#accordionFlushExample"
+    >
+      <div class="accordion-body">
+
+<h5>Adding your initials to db</h5>
+
+I understand that you are trilled to use this web-application, but first we need you to add yourself as a user.
+          This can be done in on the page <code>addUsers</code>. If it runs on your localhost you can find it under:
+<code>
+http://127.0.0.1:8000/biobakery/addUser
+</code>
+          You can also just go to <code>http://127.0.0.1:8000/biobakery/Home</code> and click on <i>Your initials
+are not there?</i> in the sign in screen.
+<br><br>
+Now that you have added yourself to the database the application can be used.
+<br><br>
+          <i><b>note:</b> it can take a while before the pages are refreshed and your name shows op in the sing in screen.</i>
+<br><br>
+
+<h5>Starting process</h5>
+
+After you have singed in, you will be redirected to the upload screen. On this page
+you can choose witch parameters you want to use in your pipeline.
+<br><br>
+          <i><b>note:</b> if you decide to not use the --fastqc-end and --fastqc-start as
+              kneaddata variables it will not be possible to evaluate the reads</i>
+<br><br>
+After you have decided witch parameter you want to use, the pipeline will start.
+There are two options: 1) you wil be redirected to a page where the reads can be evaluated. or 2) The complete pipeline will run and the follow text wil be shown:
+"<b>Great your file is sent to the system,
+when the chosen tool is finished with all the hard work
+          you wil get a message.</b>"
+<br><br>
+          <i><b>note:</b> To make fully use of the application all parameters are recommended (only <code>--verdose</code> is really optional)</i>
 
       </div>
     </div>
   </div>
 
 
-
-
-
+       </div>
+     </div>
+    </div>
 {% endblock %}
 
 {% block script %}
