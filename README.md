@@ -8,7 +8,7 @@
    2. [Make it work](#make_it_work)
       1. [Packages](#packages)
       2. [Pathways](#pathways)
-   3. [testing](#testing)
+   3. [Testing](#testing)
    4. [Using it](#using)
       1. [Adding your initials to db](#adding_int)
       2. [Starting using the application](#Starting)
