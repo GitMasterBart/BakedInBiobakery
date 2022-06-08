@@ -62,28 +62,3 @@ class FileScraper:
         :return: list: list_files
         """
         return self.list_files_full_path
-
-    def get_pngreadyfiles(self):
-        """
-        Really specific and not used in the software atm. maybe later
-        :return: list: pngreadylist
-        """
-        for files in self.list_files:
-            files = files.split('/')
-            self.pngreadylist.append("../" + "/".join((files[6],files[7] ,files[8],files[9])))
-        return self.pngreadylist
-
-
-def main():
-    """
-    main function pylint vault. Will be deleted when unnecessary
-    :return:
-    """
-    search_directory =  FileScraper("/Users/bengels/Desktop/Uploaded_files/demofile_wetsus4000R1_kneaddata_paired_1_fastqc/")
-    search_directory.find_files_in_directories()
-    print(search_directory.get_directory_list_onlynames())
-
-
-
-if __name__ == '__main__':
-    main()

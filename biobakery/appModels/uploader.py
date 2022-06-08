@@ -30,23 +30,3 @@ class Uploader:
         with open(Pathways.LOCATIONUPLOADEDFILES + str(self.file), 'wb+') as destination:
             for chunk in self.file.chunks():
                 destination.write(chunk)
-
-
-def main():
-    """
-    test the uploader.
-    :return:
-    """
-    # u = Uploader("txt.sh")
-    # print(u.check_file() == 1)
-    # print(str(u.check_file()))
-    # if str(u.check_file) == "False":
-    #     print("prefix wrong")
-    #
-    # ut = Uploader("txt.gz")
-    # ut.check_file()
-    # if ut.check_file == "True":
-    #     print("prefix gz")
-
-if __name__ == '__main__':
-    main()

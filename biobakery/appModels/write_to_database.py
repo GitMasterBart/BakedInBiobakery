@@ -120,23 +120,3 @@ class WriteToDb:
                                              user_id_id=self.user_id)
         except DataError:
             return "Datapoints already exists."
-
-
-def main():
-    # file = sys.argv[1]
-    start = time.process_time()
-    createdb = WriteToDb("/Users/bengels/Desktop/Uploaded_files/demofiles_wetsusR1R2_v1/humantool_output_map_name/interleaved_map_name_genefamilies.tsv", "beng", "Microbiologie", "2022-05-03", "FirstTestOnderzoek")
-        # "~/Desktop/Uploaded_files/demofiles_wetsusR1R2/humantool_output_map_name/interleaved_map_name_genefamilies.tsv",
-        #                  "beng", "Microbiologie",
-        #                  "2022-05-03", "FirstTestOnderzoek")
-    createdb.add_users_to_db()
-    createdb.add_research_to_db()
-    createdb.add_results_to_db()
-    stop = time.process_time()
-    with open("/Users/bengels/Desktop/output_data/new.txt", "w") as new_file:
-        new_file.write("Elapsed time during the whole program in seconds: {} "
-                       .format(str(stop - start)))
-
-
-if __name__ == '__main__':
-    main()

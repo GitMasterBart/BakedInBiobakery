@@ -74,27 +74,4 @@ class ProcessesStarter:
 
         query = "source " + bashscript + " " + Pathways.INPUTFILESLOCATION + str(self.input_files) + ' ' + str(self.research_name) + ' ' + str(self.user_id) + ' ' + str(self.research_id) + ' ' + list_without_space + " " + string_ready_for_use
         # print(query)
-        os.system(query)
-
-
-
-def main():
-    """
-    test startswitches
-    :return: void
-    """
-    newactivatie = ProcessesStarter("poging2_v1", ['--remove-temp-output', '--verbose',
-                                                   '~/Desktop/Uploaded_files/humann_dbs/unireffull/', '--bypass-nucleotide-search'],
-                                    [('--bypass-nucleotide-search', 'bypass_n_search'),
-                                     ('--remove-temp-output', 'remove_temp_output'), ('--verbose', 'verbose'), (
-                                     '~/Desktop/Uploaded_files/humann_dbs/unireffull/',
-                                     'protein_db'), (
-                                     '/Users/bengels/Desktop/Uploaded_files/humann_dbs/chocophlan',
-                                     'nucleotide_db')]
-                                    )
-    newactivatie.start_humann_multi()
-
-
-if __name__ == '__main__':
-    main()
-
+        return os.system(query)
