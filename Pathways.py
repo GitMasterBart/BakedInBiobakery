@@ -1,6 +1,6 @@
 
 # input and Output pathways used in StartProcesses
-VIRTUALENVPATHWAY = '~/Desktop/StageWetsus2022/BakedInBiobakery/'
+LOCATIONOFYOURPROJECT = '/Users/bengels/Desktop/StageWetsus2022/BakedInBiobakery/'
 OUTPUTFILELOCATION = '~/Desktop/output_data/'
 INPUTFILESLOCATION = "/Users/bengels/Desktop/Uploaded_files/"
 
