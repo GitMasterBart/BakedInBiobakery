@@ -5,10 +5,8 @@ from django.shortcuts import render, redirect
 import Pathways
 from .appModels.start_processes import ProcessesStarter
 from .models import Users, Researches
-# from .appModels.start_processes import ProcessesStarter
-from .appModels.tool_switch import Switcher
+from .appModels.unzipper import Unzipper
 from biobakery.appModels.checker import Checker
-from django.core.exceptions import *
 
 # Create your views here.
 import os
@@ -67,16 +65,15 @@ class Uploadfiles(View):
                     newpage = render(request, 'v2/error_page.html', {'error_massage': error_massage})
 
                 newpage = render(request, 'v2/succes_page.html')
-                # print(str(request.FILES.get('input_file')))
+
                 try:
-                    switch = Switcher(request.POST.get("BiobakeryTool"), str(request.FILES.get('input_file')),
+                    switch = Unzipper(request.POST.get("BiobakeryTool"), str(request.FILES.get('input_file')),
                                       request.POST.getlist('tool_optons_humann'))
                     switch.control_unzip_switch()
                 except BadZipFile:
                     error_massage = Error_messages.WRONGEXTENTIONERROR
                 newpage = render(request, 'v2/error_page.html', {'error_massage': error_massage})
-                # switch.tool_switch()
-                # print(str(request.FILES.get('input_file')).split(".")[0])
+
 
                 user_id = Users.objects.filter(initials=initials) \
                     .values_list('User_id', flat=True).first()
@@ -118,8 +115,6 @@ class Uploadfiles(View):
 
                 newpage = render(request, 'v2/Upload_form.html',
                                  {'form': form, "error_message": Error_messages.WRONGEXTENTIONERROR})
-            # print(str(request.FILES.get('input_file')) + " "  + str(request.POST.get('project'))
-            #       + " "  + str(request.POST.get('date')))
         return newpage
 
 
@@ -134,7 +129,6 @@ class AddUser(View):
         return render(request, "v2/new_user.html", {'form': add_user_form})
 
     def post(selfs, request):
-        add_user_form = NewUserForm()
         if request.method == 'POST':
             initials = request.POST.get("initials")
             # needs to be made dynamic
@@ -155,14 +149,11 @@ class Information(View):
 
 class FastqcCheck(View):
     def get(self, request):
-        # if (os.listdir(Pathways.FASTQCIMGFOLDER))
         png = os.listdir(Pathways.FASTQCIMGFOLDER)
-        # while len(os.listdir(Pathways.FASTQCIMGFOLDER)) == 0:
-        #     os.system("while true; do python manage.py runserver; sleep 200; done")
         return render(request, "v2/fastqc_check_page.html", {"png": png})
-        # return render(request, "v2/fastqc_check_page.html" ,{"png" : png} )
 
     def post(selfs, request):
+        new_page = redirect("/biobakery/Upload")
         if request.method == 'POST' and "next" in request.POST:
             initials = request.session.get('username')
             research_name = request.session.get("research_name")
@@ -175,12 +166,10 @@ class FastqcCheck(View):
                 .values_list('researches_id', flat=True).first()
             total_list_variables = request.session.get('options_human')
             total_list_options = request.session.get('possible_options_human')
-
             newactivatie = ProcessesStarter(used_tool, input_file,
                                             research_name, user_id, research_id, total_list_variables,
                                             total_list_options)
             newactivatie.start_humann_multi()
-            return render(request, "v2/succes_page.html")
+            new_page = render(request, "v2/succes_page.html")
 
-        elif request.method == 'POST' and "next" in request.POST:
-            return redirect("/biobakery/Upload")
+        return new_page
