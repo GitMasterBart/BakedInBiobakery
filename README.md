@@ -8,9 +8,10 @@
    2. [Make it work](#make_it_work)
       1. [Packages](#packages)
       2. [Pathways](#pathways)
-   3. [Using it](#using)
+   3. [testing](#testing)
+   4. [Using it](#using)
       1. [Adding your initials to db](#adding_int)
-      2. [Starting process](#Starting)
+      2. [Starting using the application](#Starting)
 3. [Bibliografie](#bibliografie)
 
 
@@ -133,11 +134,21 @@ $ python manage.py runserver
 *make sure that you are in the **root** map, and that the venv is **activated***
 *reminder `source [path_to_venv]/bin/activate`*
 
+<a name="testing"></a>
+### 3) Testing
+
+Now everthing is working try if is works by testing the whole application. This can be done by going to your project folder and start the testcase.
+
+```shell
+$ python manage.py test -v2
+```
+***note:** the `-v` stands for verbosity this determines how manny feedback you will get from the terminal.*
+
 <a name="using"></a>
-### 3) Using it
+### 4) Using it
 
 <a name="adding_int"></a>
-#### 3.1) Adding your initials to db
+#### 4.1) Adding your initials to db
 
 I understand that you are trilled to use this web-application, but first we need you to add yourself as a user.
 This can be done in on the page `addUsers`. If it runs on your localhost you can find it under: 
@@ -152,7 +163,7 @@ Now that you have added yourself to the database the application can be used.
 ***note:** it can take a while before the pages are refreshed and your name shows op in the sing in screen.*
 
 <a name="Starting"></a>
-#### 3.2) Starting process
+#### 4.2) Starting using the application
 
 After you have singed in, you will be redirected to the upload screen. On this page
 you can choose witch parameters you want to use in your pipeline. 
