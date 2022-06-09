@@ -37,6 +37,6 @@ class DumpTable(models.Model):
     gene = models.CharField(max_length=100)
     family = models.CharField(max_length=150)
     sample = models.CharField(max_length=100)
-    result = models.IntegerField()
+    result = models.FloatField()
     researches_id = models.ForeignKey(Researches, blank=True, null=True, on_delete=models.PROTECT)
     user_id = models.ForeignKey(Users, blank=True, null=True, on_delete=models.PROTECT)
