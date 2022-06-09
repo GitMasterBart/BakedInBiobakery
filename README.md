@@ -90,7 +90,7 @@ LOCATIONUNIREFFPULLDATABASE = "homes/user/database_map/unirefdatabase"
 ```
 
 After changing all the pathways in the `Patways.py` file you need tho change the file paths in the scripts `static/sh_scripts/`. 
-The pathways that are set in this file look like:
+The pathways that are set in the sh-file look like this:
 ```shell
 source [PATWAY_TO_VENV]
 
@@ -131,8 +131,8 @@ type in your terminal:
 ```shell 
 $ python manage.py runserver
 ```
-*make sure that you are in the **root** map, and that the venv is **activated***
-*reminder `source [path_to_venv]/bin/activate`*
+*make sure that you are in the **root** map, and that the venv is **activated.***
+*Reminder: `source [path_to_venv]/bin/activate`*
 
 <a name="testing"></a>
 ### 3) Testing
@@ -143,6 +143,8 @@ Now everthing is working try if is works by testing the whole application. This 
 $ python manage.py test -v2
 ```
 ***note:** the `-v` stands for verbosity this determines how manny feedback you will get from the terminal.*
+
+<h4>Now that you have installed everything for the Django project part. Got to <a href="https://github.com/GitMasterBart/SnakePipeMultiHumaNn"> https://github.com/GitMasterBart/SnakePipeMultiHumaNn </a> and follow the instructions there. </h4>
 
 <a name="using"></a>
 ### 4) Using it
