@@ -124,6 +124,17 @@ DATABASES = {
 }
 ```
 
+Now migrate the structure the models to the database, this can be done by using the following query's: 
+
+```shell
+$ python manage.py makemigrations
+
+$ python manage.py migrate
+```
+
+***note:** If it does not work activate the virtual environment*
+
+
 if you have done this, the program will be ready running. 
 
 type in your terminal: 
