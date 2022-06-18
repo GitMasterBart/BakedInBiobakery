@@ -46,13 +46,15 @@ class ProcessesStarter:
         # print(possibilties_dict)
 
         string_ready_for_use = ""
-        bashscript = Pathways.LOCATIONBASHSCRIPTHUMAN
+        bashscript = Pathways.LOCATIONBASHSCRIPTCOMPLEETPIPELINE
         new_list_filse = FileScraper(Pathways.LOCATIONUPLOADEDFILES + str(self.input_files))
         new_list_filse.find_files_in_directories()
 
         dataset = new_list_filse.get_directory_list_onlynames()
-        if dataset[0] == ".snakemake":
+
+        if ".snakemake" in dataset:
             dataset.remove(".snakemake")
+
 
         for keys in self.variables:
             # print(possibilties_dict.get(keys))
@@ -71,7 +73,7 @@ class ProcessesStarter:
             bashscript = Pathways.LOCATIONBASHSCRIPTKNEADDATA
         elif self.tool == "human":
             bashscript = Pathways.LOCATIONBASHSCRIPTHUMAN
-
+        print(list_without_space)
         query = "source " + bashscript + " " + Pathways.INPUTFILESLOCATION + str(self.input_files) + ' ' + str(self.research_name) + ' ' + str(self.user_id) + ' ' + str(self.research_id) + ' ' + list_without_space + " " + string_ready_for_use
         # print(query)
         return os.system(query)

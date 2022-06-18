@@ -86,37 +86,3 @@ class WriteToDb:
                     .values_list('researches_id', flat=True).first()
         except DataError:
             return "Datapoint already exists."
-
-    def add_results_to_db(self, file):
-        """
-        Adds all te result with the samples to a database if they doe not already exists.
-        :return: if DataError: str("Datapoints already exists.")
-        """
-
-        if DumpTable.objects.filter(researches_id_id=self.research_id,
-                                    user_id_id=self.user_id).exists():
-            return exit(DataError)
-        try:
-            transformed_table = pd.DataFrame(pd.melt(pd.read_table(file, lineterminator='\n'),
-                                                     id_vars="# Gene Family"))
-            family = ""
-            for i in range(len(transformed_table)):
-                if ":" or "|" in str(transformed_table.values[i][0]):
-                    gene = transformed_table.values[i][0].split(":")[0]
-                    if len(transformed_table.values[i][0].split(":")) == 2:
-                        family = transformed_table.values[i][0].split(":")[1]
-                    elif "|" in transformed_table.values[i][0].split(":")[0]:
-                        gene = str(transformed_table.values[i][0].split(":")[0]).split("|")[0]
-                        family = str(transformed_table.values[i][0].split(":")[0]).split("|")[1]
-                else:
-                    gene = transformed_table.values[i][0]
-                    family = ""
-                print([gene,family])
-                sample = str(transformed_table.values[i][1])
-                result = transformed_table.values[i][2]
-
-                DumpTable.objects.create(gene=gene, family=family, sample=sample, result=result,
-                                             researches_id_id=self.research_id,
-                                             user_id_id=self.user_id)
-        except DataError:
-            return "Datapoints already exists."

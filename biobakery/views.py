@@ -72,7 +72,7 @@ class Uploadfiles(View):
                     switch.control_unzip_switch()
                 except BadZipFile:
                     error_massage = Error_messages.WRONGEXTENTIONERROR
-                newpage = render(request, 'v2/error_page.html', {'error_massage': error_massage})
+                    newpage = render(request, 'v2/error_page.html', {'error_massage': error_massage})
 
 
                 user_id = Users.objects.filter(initials=initials) \

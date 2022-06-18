@@ -17,6 +17,7 @@ class Checker:
         self.input_file_without_extention = str(self.input_file).split(".")[0]
         self.extention = str(self.input_file).split('.')[-1]
 
+
     def check_gz_zip(self):
         """
         check if prefix equals gz of zip
@@ -39,13 +40,12 @@ class Checker:
         return bool(self.extention == "zip")
 
     def check_if_exist(self):
-        # print(self.input_file_without_extention)
         file = FileScraper(self.input_file_without_extention)
         file.find_files_in_directories()
         inner_directorys = file.get_directory_list_onlynames()
+        # print(self.input_file_without_extention)
         if ".snakemake" in inner_directorys:
             inner_directorys.remove(".snakemake")
-        print(inner_directorys)
         for dir in inner_directorys:
             inner_files = FileScraper(self.input_file_without_extention  + "/" + dir)
             inner_files.find_files_in_directories()
@@ -56,6 +56,9 @@ class Checker:
                 if not dir in file:
                     return True
 
+    def check_if_it_contains_hypend(self):
+        if "-" in self.input_file:
+            return True
 
 
 

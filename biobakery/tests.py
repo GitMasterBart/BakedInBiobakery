@@ -3,6 +3,7 @@ from django.test import TestCase
 from biobakery.appModels.uploader import Uploader
 from biobakery.appModels.file_scraper import FileScraper
 from biobakery.appModels.start_processes import ProcessesStarter
+from biobakery.appModels.checker import Checker
 import Pathways
 
 # Create your tests here.
@@ -99,6 +100,12 @@ class ViewTest(TestCase):
     def test_testuploadview(self):
         response = self.client.post('/biobakery/Upload', follow=True)
         self.assertRedirects(response, '/biobakery/Upload')
+
+class CheckerTest(TestCase):
+    def test_check_if_it_contains_hypend(self):
+        checkerclass = Checker("Sed_ut-perspiciatis")
+        response = checkerclass.check_if_it_contains_hypend()
+        self.assertEquals(response, True)
 
 
 
