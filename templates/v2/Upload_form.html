@@ -32,6 +32,8 @@
                 <p class="h4 ">MetaData + file-upload</p>
 
                 <p class="h5 mb-3 " > Welkom {{ username }}</p>
+                <h5 style="color: red"> Be aware; when the application starts this page will freeze.
+                    Let it run out till the next page is shown.</h5>
             {% csrf_token %}
             {{ form.as_p }}
              <button type="submit" id="submit">Submit</button>
