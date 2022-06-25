@@ -49,6 +49,7 @@ class Uploadfiles(View):
         request.session["input_file"] = str(input_file).split(".")[0]
 
         if request.method == 'POST' and input_file:
+            print(type(input_file))
             uploaded = Uploader(input_file)
             if uploaded.check_file():
                 # adding research to db
@@ -67,9 +68,9 @@ class Uploadfiles(View):
                 newpage = render(request, 'v2/succes_page.html')
 
                 try:
-                    switch = Unzipper(request.POST.get("BiobakeryTool"), str(request.FILES.get('input_file')),
-                                      request.POST.getlist('tool_optons_humann'))
+                    switch = Unzipper(str(request.FILES.get('input_file')))
                     switch.control_unzip_switch()
+                    switch.contorl_gzip_switch()
                 except BadZipFile:
                     error_massage = Error_messages.WRONGEXTENTIONERROR
                     newpage = render(request, 'v2/error_page.html', {'error_massage': error_massage})
@@ -94,10 +95,10 @@ class Uploadfiles(View):
                 request.session['possible_options_human'] = POSSILBLEOPTIONSHUMANTOOL
 
                 try:
-                    if Checker(Pathways.INPUTFILESLOCATION + str(input_file)).check_if_exist():
+                    checking = Checker(Pathways.INPUTFILESLOCATION + str(input_file))
+                    if checking.check_if_not_exist() or checking.check_if_it_contains_hypend():
                         error_massage = Error_messages.FIlESINZIPNOTCORRECT
                         newpage = render(request, 'v2/error_page.html', {'error_massage': error_massage})
-                    print(len(USEDOPTIONSKNEADDATA))
                     if len(USEDOPTIONSKNEADDATA) > 3:
                         used_tool = "kneaddata"
                         newpage = redirect("/biobakery/fastqcCheck")
