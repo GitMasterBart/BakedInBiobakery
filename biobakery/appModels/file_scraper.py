@@ -62,3 +62,19 @@ class FileScraper:
         :return: list: list_files
         """
         return self.list_files_full_path
+
+    def remove_snakemake_file(self):
+        """
+        removes .snakemake form dict list
+        :return:
+        """
+        snakemakelocation = str(self.file_path) + "/.snakemake"
+        if snakemakelocation in self.get_directory_list():
+            self.get_directory_list().remove(snakemakelocation)
+
+        if ".snakemake" in self.get_directory_list_onlynames():
+            self.get_directory_list_onlynames().remove(".snakemake")
+
+
+
+

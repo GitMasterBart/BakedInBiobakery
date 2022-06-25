@@ -73,7 +73,7 @@ class ProcessesStarter:
             bashscript = Pathways.LOCATIONBASHSCRIPTKNEADDATA
         elif self.tool == "human":
             bashscript = Pathways.LOCATIONBASHSCRIPTHUMAN
-        print(list_without_space)
+        print(string_ready_for_use)
         query = "source " + bashscript + " " + Pathways.INPUTFILESLOCATION + str(self.input_files) + ' ' + str(self.research_name) + ' ' + str(self.user_id) + ' ' + str(self.research_id) + ' ' + list_without_space + " " + string_ready_for_use
         # print(query)
         return os.system(query)

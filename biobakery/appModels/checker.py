@@ -1,6 +1,6 @@
 #!/env/bin/python3
 """
-This class contains all the checks that are made regards the file prefixes
+This class contains all the checks that are made regards the file extension
 """
 import Pathways
 from biobakery.appModels.file_scraper import FileScraper
@@ -39,13 +39,12 @@ class Checker:
         """
         return bool(self.extention == "zip")
 
-    def check_if_exist(self):
+    def check_if_not_exist(self):
         file = FileScraper(self.input_file_without_extention)
         file.find_files_in_directories()
+        file.remove_snakemake_file()
         inner_directorys = file.get_directory_list_onlynames()
         # print(self.input_file_without_extention)
-        if ".snakemake" in inner_directorys:
-            inner_directorys.remove(".snakemake")
         for dir in inner_directorys:
             inner_files = FileScraper(self.input_file_without_extention  + "/" + dir)
             inner_files.find_files_in_directories()
