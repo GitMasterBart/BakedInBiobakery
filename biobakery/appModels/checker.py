@@ -39,12 +39,31 @@ class Checker:
         """
         return bool(self.extention == "zip")
 
+
+    def checks_fastq(self):
+        headDir = FileScraper(self.input_file_without_extention)
+        headDir.find_files_in_directories()
+        headDir.remove_snakemake_file()
+        inner_directorys = headDir.get_directory_list_onlynames()
+        for dir in inner_directorys:
+            inner_files = FileScraper(self.input_file_without_extention + "/" + dir)
+            inner_files.find_files_in_directories()
+            filelist = inner_files.get_fileset()
+            if ".DS_Store" in filelist:
+                filelist.remove(".DS_Store")
+            for file in filelist:
+                if not "fastq" in file:
+                    return True
+
     def check_if_not_exist(self):
+        """
+        checks if files are there
+        :return:
+        """
         file = FileScraper(self.input_file_without_extention)
         file.find_files_in_directories()
         file.remove_snakemake_file()
         inner_directorys = file.get_directory_list_onlynames()
-        # print(self.input_file_without_extention)
         for dir in inner_directorys:
             inner_files = FileScraper(self.input_file_without_extention  + "/" + dir)
             inner_files.find_files_in_directories()
@@ -52,12 +71,10 @@ class Checker:
             if ".DS_Store" in filelist:
                 filelist.remove(".DS_Store")
             for file in filelist:
+                print(filelist)
                 if not dir in file:
                     return True
 
     def check_if_it_contains_hypend(self):
         if "-" in self.input_file:
             return True
-
-
-

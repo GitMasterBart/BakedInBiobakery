@@ -49,7 +49,6 @@ class Uploadfiles(View):
         request.session["input_file"] = str(input_file).split(".")[0]
 
         if request.method == 'POST' and input_file:
-            print(type(input_file))
             uploaded = Uploader(input_file)
             if uploaded.check_file():
                 # adding research to db
@@ -63,7 +62,7 @@ class Uploadfiles(View):
                     uploaded.handle_uploaded_file()
                 except BadZipFile:
                     error_massage = Error_messages.WRONGEXTENTIONERROR
-                    newpage = render(request, 'v2/error_page.html', {'error_massage': error_massage})
+                    return render(request, 'v2/error_page.html', {'error_massage': error_massage})
 
                 newpage = render(request, 'v2/succes_page.html')
 
@@ -73,21 +72,16 @@ class Uploadfiles(View):
                     switch.contorl_gzip_switch()
                 except BadZipFile:
                     error_massage = Error_messages.WRONGEXTENTIONERROR
-                    newpage = render(request, 'v2/error_page.html', {'error_massage': error_massage})
-
+                    return render(request, 'v2/error_page.html', {'error_massage': error_massage})
 
                 user_id = Users.objects.filter(initials=initials) \
                     .values_list('User_id', flat=True).first()
                 research_id = Researches.objects.filter(name=research_name) \
                     .values_list('researches_id', flat=True).first()
-
                 USEDOPTIONSKNEADDATA = request.POST.getlist('tool_optons_kneaddata')
                 USEDOPTIONSHUMANTOOL = request.POST.getlist('tool_optons_humann')
                 total_list_variables = USEDOPTIONSHUMANTOOL + USEDOPTIONSKNEADDATA
-
                 request.session['options_human'] = USEDOPTIONSHUMANTOOL
-
-
                 POSSILBLEOPTIONSKNEADDATA = form.fields['tool_optons_kneaddata'].choices
                 POSSILBLEOPTIONSHUMANTOOL = form.fields['tool_optons_humann'].choices
                 total_list_options = POSSILBLEOPTIONSHUMANTOOL + POSSILBLEOPTIONSKNEADDATA
@@ -96,24 +90,29 @@ class Uploadfiles(View):
 
                 try:
                     checking = Checker(Pathways.INPUTFILESLOCATION + str(input_file))
-                    if checking.check_if_not_exist() or checking.check_if_it_contains_hypend():
+                    if checking.check_if_not_exist():
                         error_massage = Error_messages.FIlESINZIPNOTCORRECT
-                        newpage = render(request, 'v2/error_page.html', {'error_massage': error_massage})
+                        return render(request, 'v2/error_page.html', {'error_massage': error_massage})
+                    if checking.check_if_it_contains_hypend():
+                        error_massage = Error_messages.FIlESHASEHYPENDERROR
+                        return render(request, 'v2/error_page.html', {'error_massage': error_massage})
                     if len(USEDOPTIONSKNEADDATA) > 3:
                         used_tool = "kneaddata"
                         newpage = redirect("/biobakery/fastqcCheck")
 
+                    if checking.checks_fastq():
+                        error_massage = Error_messages.FILENOTFASTQERROR
+                        return render(request, 'v2/error_page.html', {'error_massage': error_massage})
+
                     newactivatie = ProcessesStarter(used_tool, str(input_file).split(".")[0],
-                                                    research_name, user_id, research_id, total_list_variables,
-                                                    total_list_options)
+                                                        research_name, user_id, research_id, total_list_variables,
+                                                        total_list_options)
                     newactivatie.start_humann_multi()
 
                 except FileNotFoundError:
                     error_massage = Error_messages.FILENOTFOUNDERROR
-                    newpage = render(request, 'v2/error_page.html', {'error_massage': error_massage})
-
+                    return render(request, 'v2/error_page.html', {'error_massage': error_massage})
             else:
-
                 newpage = render(request, 'v2/Upload_form.html',
                                  {'form': form, "error_message": Error_messages.WRONGEXTENTIONERROR})
         return newpage

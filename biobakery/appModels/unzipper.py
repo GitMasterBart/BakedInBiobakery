@@ -30,8 +30,11 @@ class Unzipper:
         """
 
         if Checker(self.input_file).check_zip():
+            print(self.input_file)
             with zipfile.ZipFile(Pathways.INPUTFILESLOCATION + self.input_file, 'r') as zip_ref:
+                print("unzipping")
                 zip_ref.extractall(Pathways.INPUTFILESLOCATION)
+                print(Pathways.INPUTFILESLOCATION + self.input_file)
             self.input_file = str(self.input_file).split('.')[0]
 
     def contorl_gzip_switch(self):
@@ -57,4 +60,8 @@ class Unzipper:
                         fp.close()
 
 
-
+# Unzipper("Fullsamples_dummy.zip").control_unzip_switch()
+#
+# with zipfile.ZipFile( "/Users/bengels/Desktop/Uploaded_files/Fullsamples_dummy_3.zip", 'r') as zip_ref:
+#
+#     zip_ref.extractall("/Users/bengels/Desktop/Uploaded_files/")
