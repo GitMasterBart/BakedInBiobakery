@@ -12,7 +12,7 @@
    4. [Using it](#using)
       1. [Adding your initials to db](#adding_int)
       2. [Starting using the application](#Starting)
-3. [Bibliografie](#bibliografie)
+3. [References](#bibliografie)
 
 
 ![Flowchart application](static/img/flowchart/flowchart.png)
@@ -65,6 +65,11 @@ $ conda install [package]
 * human
 * kneaddata
 * bowtie2 
+
+**Needed databases**
+
+* Trimmomatic
+* Silvadb 
 
 If it does not work to get bowtie on your system, use:
 
@@ -186,14 +191,12 @@ variables it will not be possible to evaluate the reads*
 
 After you have decided witch parameter you want to use, the pipeline will start. 
 There are two options: 1) you wil be redirected to a page where the reads can be evaluated. or 2) The complete pipeline will run and the follow text wil be shown: 
-"**Great your file is sent to the system, 
-when the chosen tool is finished with all the hard work 
-you wil get a message.**"
+"**Great your file is sent to the system..**"
 
 ***note:** To make fully use of the application all parameters are recommended (only `--verdose` is really optional)* 
 
 <a name="bibliografie"></a>
-*Bibliografie:*
+*References:*
 
 [^1]: Beghini, F., McIver, L. J., Blanco-Míguez, A., Dubois, L., Asnicar, F., Maharjan, S., Mailyan, A., Manghi, P., Scholz, M., Thomas, A. M., Valles-Colomer, M., Weingart, G., Zhang, Y., Zolfo, M., Huttenhower, C., Franzosa, E. A., & Segata, N. (2021). Integrating taxonomic, functional, and strain-level profiling of diverse microbial communities with biobakery 3. ELife, 10. https://doi.org/10.7554/eLife.65088
 
