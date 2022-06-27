@@ -14,13 +14,14 @@
       1. [Adding your initials to db](#adding_int)
       2. [Starting using the application](#Starting)
 3. [References](#bibliografie)
+4.
 
 
 ![Flowchart application](static/img/flowchart/flowchart.png)
 *Figure1: Shows the functionality of the application. The different colored arrows show which processes belong together.*
 
 <a name="intent"></a>
-## Intent
+## 1) Intent
 
 The Biobakery is a tool package that facilitates the analysis of transcriptome data (Beghini et al., 2021)[^1]. Transcriptome data shows which genes are active, and to what extent these genes are active at the time of measurement (Pevsner, 2015, p. 479) [^2]. By doing this for multiple samples of interest, it is possible to see if there are changes or differences in gene expression. When there are changes in an environment, genes can be up- or down regulated. If this is done in a controlled environment, the changes in gene expression can be related to the changes in the environment. In this way, the influence of substances on organisms in an environment can be investigated. 
  
@@ -28,10 +29,10 @@ The Biobakery is made for use in a non-graphical environment. For the average us
 To help encourage more people to work with these tools, the idea was conceived to create an usable application around. The purpose of this application is not only to run the tools, but also to store the output data in a smart, easy-to-access and easy-to-interpret way.
 
 <a name="usage"></a>
-## Getting ready for using
+## 2) Getting ready for using
 
 <a name="getting_start"></a>
-### 1) Getting it on your computer
+### 2.1) Getting it on your computer
 
 First clone the both the BakedinBiobakery and the SnakePipeMultiHumaNn set the SnakePipeMultiHumaNn in the `biobakery/appModels` directory : 
 ```shell
@@ -40,9 +41,9 @@ First clone the both the BakedinBiobakery and the SnakePipeMultiHumaNn set the S
  $ git clone https://github.com/GitMasterBart/SnakePipeMultiHumaNn.git
  ```
 <a name="make_it_work"></a>
-### 2) Make it work
+### 2.2) Make it work
 <a name="packages"></a>
-#### 2.1) Packages
+#### 2.2.1) Packages
 
 Now create a virtual enviorement (venv/conda). And install
 all the following packages. 
@@ -82,7 +83,7 @@ sudo apt-get install bowtie
 ``su apt-get install bowtie``
 
 <a name="pathways"></a>
-#### 2.2) Pathways
+#### 2.2.2) Pathways
 
 Go to the file `Patways.py`. This file contains al the packages that are used in this application. 
 Set all the pathways to the location of the file that is asked for. Example: 
@@ -153,7 +154,7 @@ $ python manage.py runserver
 *Reminder: `source [path_to_venv]/bin/activate`*
 
 <a name="testing"></a>
-### 3) Testing
+### 2.3) Testing
 
 Now everthing is working try if is works by testing the whole application. This can be done by going to your project folder and start the testcase.
 
@@ -165,16 +166,17 @@ $ python manage.py test -v2
 <h4>Now that you have installed everything for the Django project part. Got to <a href="https://github.com/GitMasterBart/SnakePipeMultiHumaNn"> https://github.com/GitMasterBart/SnakePipeMultiHumaNn </a> and follow the instructions there. </h4>
 
 <a name="using"></a>
-### 4) Using it
+### 2.4) Using it
 
 <a name="adding_int"></a>
-#### 4.1) Adding your initials to db
+#### 2.4.1) Adding your initials to db
 
 I understand that you are trilled to use this web-application, but first we need you to add yourself as a user.
 This can be done in on the page `addUsers`. If it runs on your localhost you can find it under: 
 ```http request
 http://127.0.0.1:8000/biobakery/addUser
 ``` 
+
 You can also just go to `http://127.0.0.1:8000/biobakery/Home` and click on "Your initials 
 are not there?" in the sign in screen.
 
@@ -183,7 +185,7 @@ Now that you have added yourself to the database the application can be used.
 ***note:** it can take a while before the pages are refreshed and your name shows op in the sing in screen.*
 
 <a name="Starting"></a>
-#### 4.2) Starting using the application
+#### 2.4.2) Starting using the application
 
 After you have singed in, you will be redirected to the upload screen. On this page
 you can choose witch parameters you want to use in your pipeline. 
@@ -197,7 +199,8 @@ There are two options: 1) you wil be redirected to a page where the reads can be
 
 ***note:** To make fully use of the application all parameters are recommended (only `--verdose` is really optional)* 
 
-#### Dashboard
+<a name="dashboard"></a>
+## 3) Dashboard
 
 To implement the dashboard that uses Maaslin2 to calculate reltations between datapoints. Donwload it from this  [reposetory](https://github.com/GitMasterBart/BakedinBiobakeryShinyDashboard).
 
