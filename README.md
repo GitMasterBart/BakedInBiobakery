@@ -113,6 +113,8 @@ cd [PATWAY_TO_SNAKEMAKE_FILE]
  </code> 
 <p>There are also options for adding more details to your sbatch syntax: </p>
 <code> --cluster "sbatch -A {cluster.account} -p {cluster.partition} -n {cluster.n}  -t {cluster.time}"</code>
+<p>It is alos possible to change the <code>--cores n</code> and <code>--jobs n</code> </p>
+<code> snakemake --cluster "sbatch" --cores n --jobs n  --config inputfiles=$1 name=$2 user_index=$3 research_index=$4 dataset=$5 $6 $7 $8 $9 ${10} ${11} ${12} ${13} ${14} ${15} ${16} &</code>
 </details>
 
 To use databases first you need to create a database, as a tip call this database `biobakery`. when this dabase is created 
