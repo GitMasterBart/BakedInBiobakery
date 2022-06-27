@@ -1,9 +1,4 @@
----
-output:
-  word_document: default
-  html_document: default
-  pdf_document: default
----
+
 # BakedInBiobakery
 
 ## Table of Contents
