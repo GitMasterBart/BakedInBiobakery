@@ -1,3 +1,9 @@
+---
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
 # BakedInBiobakery
 
 ## Table of Contents
@@ -31,7 +37,6 @@ To help encourage more people to work with these tools, the idea was conceived t
 
 <a name="getting_start"></a>
 ### 1) Getting it on your computer
-**Not User Ready.**
 
 First clone the both the BakedinBiobakery and the SnakePipeMultiHumaNn set the SnakePipeMultiHumaNn in the `biobakery/appModels` directory : 
 ```shell
@@ -194,6 +199,25 @@ There are two options: 1) you wil be redirected to a page where the reads can be
 "**Great your file is sent to the system..**"
 
 ***note:** To make fully use of the application all parameters are recommended (only `--verdose` is really optional)* 
+
+#### Dashboard
+
+To implement the dashboard that uses Maaslin2 to calculate reltations between datapoints. Donwload it from this  [reposetory](https://github.com/GitMasterBart/BakedinBiobakeryShinyDashboard).
+
+or use: 
+
+```{shell}
+$ git clone https://github.com/GitMasterBart/BakedinBiobakeryShinyDashboard.git
+```
+
+If you want to run it localy you can easly change the `href` pathways to the local server that shiny is running in. These can be found on the on the `html` pages in the `templates` folder.
+The templates that contain dashboard are:
+
+* succes_page.html
+* inf_page.html
+* Upload_form.html
+* fastqc_check_page.html
+
 
 <a name="bibliografie"></a>
 *References:*
