@@ -10,11 +10,12 @@
       1. [Packages](#packages)
       2. [Pathways](#pathways)
    3. [Testing](#testing)
-   4. [Using it](#using)
-      1. [Adding your initials to db](#adding_int)
-      2. [Starting using the application](#Starting)
-3. [References](#bibliografie)
-4.
+3. [Using it](#using)
+  1. [Adding your initials to db](#adding_int)
+  2. [Starting using the application](#Starting)
+4. [Dashboard](#dashboard)
+5. [References](#bibliografie)
+
 
 
 ![Flowchart application](static/img/flowchart/flowchart.png)
@@ -166,10 +167,10 @@ $ python manage.py test -v2
 <h4>Now that you have installed everything for the Django project part. Got to <a href="https://github.com/GitMasterBart/SnakePipeMultiHumaNn"> https://github.com/GitMasterBart/SnakePipeMultiHumaNn </a> and follow the instructions there. </h4>
 
 <a name="using"></a>
-### 2.4) Using it
+## 3) Using it
 
 <a name="adding_int"></a>
-#### 2.4.1) Adding your initials to db
+### 3.1) Adding your initials to db
 
 I understand that you are trilled to use this web-application, but first we need you to add yourself as a user.
 This can be done in on the page `addUsers`. If it runs on your localhost you can find it under: 
@@ -185,7 +186,7 @@ Now that you have added yourself to the database the application can be used.
 ***note:** it can take a while before the pages are refreshed and your name shows op in the sing in screen.*
 
 <a name="Starting"></a>
-#### 2.4.2) Starting using the application
+### 3.2) Starting using the application
 
 After you have singed in, you will be redirected to the upload screen. On this page
 you can choose witch parameters you want to use in your pipeline. 
@@ -200,7 +201,7 @@ There are two options: 1) you wil be redirected to a page where the reads can be
 ***note:** To make fully use of the application all parameters are recommended (only `--verdose` is really optional)* 
 
 <a name="dashboard"></a>
-## 3) Dashboard
+## 4) Dashboard
 
 To implement the dashboard that uses Maaslin2 to calculate reltations between datapoints. Donwload it from this  [reposetory](https://github.com/GitMasterBart/BakedinBiobakeryShinyDashboard).
 
