@@ -1,6 +1,6 @@
 #!/bin/bash
 # start working in venv
-source venv/bin/activate
+source [path to venv]
 # redirects to the correct folder
 cd /Users/bengels/Desktop/StageWetsus2022/BakedInBiobakery/biobakery/appModels/SnakePipeMultiHumaNn/
 rm -r -f $1/.snakemake
