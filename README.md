@@ -29,6 +29,10 @@ The Biobakery is a tool package that facilitates the analysis of transcriptome d
 The Biobakery is made for use in a non-graphical environment. For the average user, this is not advantageous in terms of usability. Therefore, it is common for students and even for professionals not to use these tools. 
 To help encourage more people to work with these tools, the idea was conceived to create an usable application around. The purpose of this application is not only to run the tools, but also to store the output data in a smart, easy-to-access and easy-to-interpret way.
 
+### 1.1 styling application
+The interface is styled using a module that is a broadened version Bootstrap   called Material Design for Bootstrap (MDB).  This makes is possible to style your webpage with their styling objects. It is an easier and faster way of styling interfaces. Bootstrap already surplice a lot of possible styling options but because MDB is an extension on Bootstrap it has more options for styling. The downside is that it takes a lot of storage space. 
+But because it was necessary to alter some standard styling object for the Bakedinbiobakery, the whole package is included in the repository. This also makes it more usable.
+
 <a name="usage"></a>
 ## 2) Getting ready for using
 
