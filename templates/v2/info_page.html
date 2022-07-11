@@ -44,26 +44,37 @@
       data-mdb-parent="#accordionFlushExample"
     >
       <div class="accordion-body">
-          [32] Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium
-          doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis
-          et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,
-          quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-          eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum,
-          quia dolor sit amet consectetur adipisci[ng] velit, sed quia non numquam [do]
-          eius modi tempora inci[di]dunt, ut labore et dolore magnam aliquam quaerat voluptatem.
-          Ut enim ad minima veniam, quis nostrum[d] exercitationem ullam corporis suscipit laboriosam,
-          nisi ut aliquid ex ea commodi consequatur? <br> [D]Quis autem vel eum iure reprehenderit, qui in ea
-          voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat,
-          quo voluptas nulla pariatur? [33] At vero eos et accusamus et iusto odio dignissimos ducimus,
-          qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias
-          excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt
-          mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
-          distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit,
-          quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor
-          repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe
-          eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic
-          tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis
-          doloribus asperiores repellat.
+          Transcriptome data shows which genes are activated, and to what extent these genes are active
+          at the time of measurement (Lowe et al., 2017).This can be used to answer specific questions.
+          For example, analyzing the transcriptomic data for multiple samples of interest, makes it possible
+          to see if there are changes or differences in gene expression. When there are changes in an environment,
+          genes can be up- or down regulated. If this is done in a controlled environment, the changes in gene expression
+          can be related to the changes in the environment. In this way, the influence of substances on
+          organisms in an environment can be investigated. Transcriptomics data can also be used to compare
+          change or differences in different tissues or time. (Lowe et al., 2017).
+          The most common way to extract transcriptomic data is by RNA-sequencing. In the last decade the count of
+          publications that involve transcriptomic data acquired with RNA-sequencing (RNA-seq) is grown expansional
+          (Lowe et al., 2017). The biggest contributor to this exponential growth of publication that use transcriptomic
+          data acquired by RNA-seq is because RNA-seq has a dynamic range in order of magnitude 5 over its competitors.
+          Also, the cost of sequencing has decreased significand over the last decades and this change made it more available
+          (Pevsner, 2015). Almost all tools that are available, are designed to run form a command-line interface, either in a
+          Unix environment or within the R/Bioconductor statical environment (Lowe et al., 2017).
+          As a possible side effect, this may cause individuals who have no experience or training in
+          working with a command-line interface see it as a deterrence to start using these techniques.
+          Witch could have as a result that a lot of people do not us these techniques.  This is unfortunate
+          mainly because the value of these tools are becoming increasingly apparent (Beghini et al., 2021).
+          The purpose of the BakedinBiobakery is to create a workflow that makes it possible for users that do
+          not have any experience with a command-line interface to do a full transcriptomics data analysis based
+          on functional profiling in metagenomics in the form of a Web-user-Interface (WUI).
+
+          <br><br>
+
+          <b>References</b>
+          <br>
+          <i>Beghini, F., McIver, L. J., Blanco-Míguez, A., Dubois, L., Asnicar, F., Maharjan, S., Mailyan, A., Manghi, P., Scholz, M., Thomas, A. M., Valles-Colomer, M., Weingart, G., Zhang, Y., Zolfo, M., Huttenhower, C., Franzosa, E. A., & Segata, N. (2021). Integrating taxonomic, functional, and strain-level profiling of diverse microbial communities with biobakery 3. ELife, 10. https://doi.org/10.7554/eLife.65088</i>
+          <br>
+          <i>Lowe, R., Shirley, N., Bleackley, M., Dolan, S., & Shafee, T. (2017). Transcriptomics technologies. PLoS Computational Biology, 13(5). https://doi.org/10.1371/journal.pcbi.1005457</i>
+
       </div>
     </div>
   </div>
@@ -133,7 +144,13 @@ Now that you have added yourself to the database the application can be used.
 <br><br>
           <i><b>note:</b> it can take a while before the pages are refreshed and your name shows op in the sing in screen.</i>
 <br><br>
+<h5>File layout</h5>
 
+The raw input data that is accepted by the BakedinBiobakery is a has a specific construction shown in figure1. A few rules must be complied. Otherwise, the workflow would not work correctly. The first layer of tis construction exist of a folder that has a name representing the analysis. The second layer consist of a group of folders that are named after the samples. In the most outer layer, is filled with fastq   files. The important thing to realize is that this application uses forward and backward reads to analyze the samples. This means that each sample folder has 2 inner fastq documents, both these files have a name that compliments the samples folder name, but they have both a unique extension: R1 and R2. Because these data files often contain a few gigabits of data, they are compressed. This makes them smaller and therefore easer to work with.
+<br><br>
+<img src="../../static/img/flowchart/file_layout.png" alt="figure1">
+
+<br>Figure1:This figure shows a folder structure that is needed for letting the SnakePipeMultiHumaNn work.<br><br>
 <h5>Starting process</h5>
 
 After you have singed in, you will be redirected to the upload screen. On this page
