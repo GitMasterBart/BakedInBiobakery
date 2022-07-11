@@ -2,7 +2,7 @@
 """
 This class contains all the checks that are made regards the file extension
 """
-import Pathways
+
 from biobakery.appModels.file_scraper import FileScraper
 
 class Checker:
@@ -21,7 +21,7 @@ class Checker:
     def check_gz_zip(self):
         """
         check if prefix equals gz of zip
-        :return: boolean
+        :return: booleany
         """
         return bool(self.extention in ("gz", "zip"))
 
@@ -41,12 +41,16 @@ class Checker:
 
 
     def checks_fastq(self):
-        headDir = FileScraper(self.input_file_without_extention)
-        headDir.find_files_in_directories()
-        headDir.remove_snakemake_file()
-        inner_directorys = headDir.get_directory_list_onlynames()
-        for dir in inner_directorys:
-            inner_files = FileScraper(self.input_file_without_extention + "/" + dir)
+        """
+        checks if a fastq extension is present in all the sample files
+        :return: boolean
+        """
+        head_dir = FileScraper(self.input_file_without_extention)
+        head_dir.find_files_in_directories()
+        head_dir.remove_snakemake_file()
+        inner_directorys = head_dir.get_directory_list_onlynames()
+        for directory in inner_directorys:
+            inner_files = FileScraper(self.input_file_without_extention + "/" + directory)
             inner_files.find_files_in_directories()
             filelist = inner_files.get_fileset()
             if ".DS_Store" in filelist:
@@ -55,26 +59,30 @@ class Checker:
                 if not "fastq" in file:
                     return True
 
-    def check_if_not_exist(self):
+    def check_if_sample_same_as_folder(self):
         """
         checks if files are there
-        :return:
+        :return: boolean
         """
         file = FileScraper(self.input_file_without_extention)
         file.find_files_in_directories()
         file.remove_snakemake_file()
         inner_directorys = file.get_directory_list_onlynames()
-        for dir in inner_directorys:
-            inner_files = FileScraper(self.input_file_without_extention  + "/" + dir)
+        for directory in inner_directorys:
+            inner_files = FileScraper(self.input_file_without_extention  + "/" + directory)
             inner_files.find_files_in_directories()
             filelist = inner_files.get_fileset()
             if ".DS_Store" in filelist:
                 filelist.remove(".DS_Store")
             for file in filelist:
-                print(filelist)
-                if not dir in file:
+                if not directory in file:
                     return True
 
-    def check_if_it_contains_hypend(self):
+    def check_if_contains_hypend(self):
+        """
+        checks if hypends "-" are present in the
+        file or directory names.
+        :return: boolean
+        """
         if "-" in self.input_file:
             return True

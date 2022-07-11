@@ -5,13 +5,11 @@ This class pushes the result data in a database, it uses django
 models to make contact with the mysql database. It is a class that needs five variables:
  file, initials, department, date, research_name
 """
-import sys
-import time
+
 import os
 from django.conf import settings
 from django.db.utils import DataError
 import django
-import pandas as pd
 
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "djangoProject.settings"
@@ -27,7 +25,8 @@ if not settings.configured:
         # DATABASE_PORT = '3306',
     )
 
-from biobakery.models import *
+from biobakery.models import Users, Department, Researches
+
 
 class WriteToDb:
     """

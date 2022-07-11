@@ -1,14 +1,23 @@
+"""
+This file holds the structure for all the forms that are present in this application.
+"""
+
 from django import forms
-
 import Pathways
 
-import Pathways
 
 class DateInput(forms.DateInput):
+    """
+      a class that containts all the objects that are pressent in the date form
+    """
     input_type = 'date'
 
+
 class ApplicatonForm(forms.Form):
-    TOOL_CHOICES = [('human', 'HUMAnN3') ] #, ('phyloplan', 'PhyloPhlAn3') , ('metaplan', 'metaphlan3')]
+    """
+    a class that containts all the objects that are pressent in the application form
+    """
+    TOOL_CHOICES = [('human', 'HUMAnN3') ]
     BiobakeryTool = forms.ChoiceField(widget=forms.RadioSelect, choices=TOOL_CHOICES)
     KNEADDATA_OPTIONS = [(Pathways.LOCATIONSILVADATABASE, "silvadatabase"),
                          (Pathways.LOCATIONTRIMMOMATICDATABASE, "trimmomatic"),
@@ -20,12 +29,17 @@ class ApplicatonForm(forms.Form):
                      ("--verbose","verbose"),
                      (Pathways.LOCATIONUNIREFFPULLDATABASE, "protein_db"),
                      (Pathways.LOCATIONCHOCOPHLANDATABASE, "nucleotide_db")]
-    tool_optons_kneaddata = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=KNEADDATA_OPTIONS)
-    tool_optons_humann = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=HUMAN_OPTIONS)
+    tool_optons_kneaddata = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
+                                                      choices=KNEADDATA_OPTIONS)
+    tool_optons_humann = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
+                                                   choices=HUMAN_OPTIONS)
     project = forms.CharField(max_length=15)
     date = forms.DateField(widget=DateInput)
-    # unlock = forms.ChoiceField(widget=forms.CheckboxInput)
     input_file = forms.FileField()
 
+
 class NewUserForm(forms.Form):
+    """
+     a class that contains all the objects that are present in the new user form
+    """
     initials = forms.CharField(max_length=4)

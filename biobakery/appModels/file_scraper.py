@@ -49,6 +49,9 @@ class FileScraper:
         return self.listdir_full_path
 
     def get_directory_list_onlynames(self):
+        """
+        :return: list : list containing names of files or directory's in folder
+        """
         return self.listdir
 
     def get_fileset(self):
@@ -74,7 +77,3 @@ class FileScraper:
 
         if ".snakemake" in self.get_directory_list_onlynames():
             self.get_directory_list_onlynames().remove(".snakemake")
-
-
-
-

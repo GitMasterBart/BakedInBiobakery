@@ -32,7 +32,7 @@ class HomeViews(View):
         return redirect("/biobakery/Upload")
 
 
-class Uploadfiles(View):
+class UploadViews(View):
     def get(self, request):
         form = ApplicatonForm()
         initials = request.session.get('username')
@@ -41,16 +41,12 @@ class Uploadfiles(View):
     def post(self, request):
         form = ApplicatonForm(request.POST)
         newpage = ""
-        # print(form.fields['tool_optons_humann'].choices)
-        # print(request.POST.getlist('tool_optons_humann'))
-        ## tool data
         input_file = request.FILES.get('input_file')
         used_tool = "compleet"
         request.session["input_file"] = str(input_file).split(".")[0]
-
         if request.method == 'POST' and input_file:
-            uploaded = Uploader(input_file)
-            if uploaded.check_file():
+            if Checker(input_file).check_zip():
+                uploaded = Uploader(input_file)
                 # adding research to db
                 initials = request.session.get('username')
                 research_name = request.POST.get("project") + "_" + request.POST.get("date") + "_" + str(initials)
@@ -68,9 +64,9 @@ class Uploadfiles(View):
 
                 try:
                     switch = Unzipper(str(request.FILES.get('input_file')))
-                    switch.control_unzip_switch()
-                    switch.contorl_gzip_switch()
-                except BadZipFile:
+                    switch.unzip_zip_folder()
+                    switch.unzip_gz_files()
+                except (BadZipFile, FileNotFoundError):
                     error_massage = Error_messages.WRONGEXTENTIONERROR
                     return render(request, 'v2/error_page.html', {'error_massage': error_massage})
 
@@ -90,16 +86,15 @@ class Uploadfiles(View):
 
                 try:
                     checking = Checker(Pathways.INPUTFILESLOCATION + str(input_file))
-                    if checking.check_if_not_exist():
+                    if checking.check_if_sample_same_as_folder():
                         error_massage = Error_messages.FIlESINZIPNOTCORRECT
                         return render(request, 'v2/error_page.html', {'error_massage': error_massage})
-                    if checking.check_if_it_contains_hypend():
+                    if checking.check_if_contains_hypend():
                         error_massage = Error_messages.FIlESHASEHYPENDERROR
                         return render(request, 'v2/error_page.html', {'error_massage': error_massage})
-                    if len(USEDOPTIONSKNEADDATA) > 3:
+                    if "--run-fastqc-start" in USEDOPTIONSKNEADDATA and "--run-fastqc-end" in USEDOPTIONSKNEADDATA:
                         used_tool = "kneaddata"
                         newpage = redirect("/biobakery/fastqcCheck")
-
                     if checking.checks_fastq():
                         error_massage = Error_messages.FILENOTFASTQERROR
                         return render(request, 'v2/error_page.html', {'error_massage': error_massage})
@@ -147,7 +142,7 @@ class Information(View):
         return redirect("/biobakery/Home")
 
 
-class FastqcCheck(View):
+class FastqcCheckViews(View):
     def get(self, request):
         png = os.listdir(Pathways.FASTQCIMGFOLDER)
         return render(request, "v2/fastqc_check_page.html", {"png": png})
