@@ -9,7 +9,7 @@
 <br>
 *Email: b.engels@bioinf.nl*
 <br>
-*Version: v1**
+*Version: v1*
 ## Table of Contents
 
 1. [Intent](#intent)
