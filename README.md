@@ -75,12 +75,14 @@ $ conda install [package]
 **Used for the biobakery snakefile-pipeline:** 
 * human
 * kneaddata
-* bowtie2 
+* bowtie2
 
 **Needed databases**
 
 * Trimmomatic
 * Silvadb 
+* Choclophlan
+* Uniref
 
 If it does not work to get bowtie on your system, use:
 
