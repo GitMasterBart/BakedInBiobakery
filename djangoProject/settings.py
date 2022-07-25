@@ -83,11 +83,11 @@ WSGI_APPLICATION = 'djangoProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'biobakery',
-        'USER': 'root',
-        'PASSWORD': 'rakker444',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'NAME': [NAME_DATABASE],
+        'USER': [NAME_USER],
+        'PASSWORD': [PASSWORD],
+        'HOST': [SERVER],
+        'PORT': [PORT],
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
