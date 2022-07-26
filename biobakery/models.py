@@ -3,6 +3,12 @@ Models.py holds the structure for creating a database, if changes are made, the 
 `migrate` and `make-migrate` must be executed.
 """
 
+
+__author__ = "Bart Engels"
+__date__ = "28-07-2022"
+__version__ = "v1"
+
+
 from django.db import models
 
 
