@@ -1,3 +1,7 @@
+{#__author__ = "Bart Engels"#}
+{#__date__ = "28-07-2022"#}
+{#__version__ = "v1"#}
+
 {% extends "v2/base.html" %}
 {% load static %}
 {% block background %}
@@ -42,13 +46,6 @@
                 {% endif %}
             </form>
 
-{#            <div id="progress-box" class="not-visible">progress</div>#}
-{#            <div id="cancel-box" class="not-visible">#}
-{#                <button id="cancel-btn" class="btn-danger">cancel</button>#}
-{#            </div>#}
-
-
-
         </div>
 
     </div>
@@ -56,7 +53,7 @@
 
 
 {% block script %}
-<script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script><!-- Custom scripts -->
+<script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
 <script type="text/javascript"></script>
 
 <script>
