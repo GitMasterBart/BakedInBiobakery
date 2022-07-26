@@ -1,9 +1,16 @@
+"""
+file_paths with corresponding locations, add yourself.
+"""
+
+__author__ = "Bart Engels"
+__date__ = "28-07-2022"
+__version__ = "v1"
+
 
 # input and Output pathways used in StartProcesses
 LOCATIONOFYOURPROJECT =
 OUTPUTFILELOCATION =
 INPUTFILESLOCATION =
-
 
 
 # HtmlScripts and filePaths used in views.py
